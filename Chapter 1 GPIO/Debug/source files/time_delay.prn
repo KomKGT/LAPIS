@@ -1,0 +1,95 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: source files\time_delay.asm
+ Object File: source files\time_delay.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;; Compile Options : /TML621367 /MS /near /SD /Od /W 1 /Fasource files\ /Zs 
+                                    2   ;; Version Number  : Ver.3.64.5
+                                    3   ;; File Name       : time_delay.c
+                                    4   
+                                    5   	type (ML621367) 
+                                    6   	model small, near
+                                    7   	$$NINITVAR segment data 2h #0h
+                                    8   	$$NINITTAB segment table 2h any
+                                    9   	$$Delay$time_delay segment code 2h #0h
+                                   10   CVERSION 3.64.5
+                                   11   CGLOBAL 01H 03H 0000H "Delay" 08H 02H 00H 00H 80H 00H 00H 00H 07H
+                                   12   CSTRUCTTAG 0000H 0000H 0000H 0002H 00000002H "flag"
+                                   13   CSTRUCTMEM 52H 00000001H 00000000H "_ScanTime" 02H 00H 01H
+                                   14   CSTRUCTMEM 52H 00000001H 00000001H "_TimerLED" 02H 00H 01H
+                                   15   CGLOBAL 00H 43H 0002H "Flag" 04H 00H 05H 00H 00H
+                                   16   CFILE 0001H 00000008H "..\\source files\\SysFlag.h"
+                                   17   CFILE 0002H 0000000EH "..\\source files\\time_delay.h"
+                                   18   CFILE 0000H 00000017H "..\\source files\\time_delay.c"
+                                   19   
+  --------------------------       20   	rseg $$Delay$time_delay
+                                   21   CFUNCTION 0
+                                   22   
+00:0000                            23   _Delay	:
+                                   24   CBLOCK 0 1 12
+                                   25   
+                                   26   ;;{
+                                   27   CLINEA 0000H 0001H 000CH 0001H 0001H
+                                   28   CBLOCK 0 2 12
+                                   29   CSLOCAL 42H 0002H 0000H 0002H "Time_Count" 02H 00H 01H
+                                   30   
+                                   31   ;;	Time_Count++;
+                                   32   CLINEA 0000H 0000H 000FH 0002H 000EH
+00:0000 12-90 00-00'               33   	l	er0,	NEAR _$ST0
+00:0004 81 E0                      34   	add	er0,	#1 
+00:0006 13-90 00-00'               35   	st	er0,	NEAR _$ST0
+                                   36   
+                                   37   ;;		if(Time_Count >= 400) //400*4 mS = 1.6 S  //40*4 mS = 160 mS
+                                   38   CLINEA 0000H 0001H 0010H 0003H 003EH
+00:000A 90 70                      39   	cmp	r0,	#090h
+00:000C 01 51                      40   	cmpc	r1,	#01h
+00:000E 05 C1                      41   	blt	_$L1
+                                   42   CBLOCK 0 3 17
+                                   43   
+                                   44   ;;			Time_Count = 0;
+                                   45   CLINEA 0000H 0001H 0012H 0004H 0012H
+00:0010 00 E0                      46   	mov	er0,	#0 
+00:0012 13-90 00-00'               47   	st	er0,	NEAR _$ST0
+                                   48   
+                                   49   ;;			Flag._TimerLED=1;
+                                   50   CLINEA 0000H 0001H 0013H 0004H 0014H
+00:0016 80-A0'00-00'               51   	sb	NEAR _Flag.1
+                                   52   CBLOCKEND 0 3 20
+                                   53   
+                                   54   ;;		}
+                                   55   CLINEA 0000H 0000H 0014H 0003H 0003H
+00:001A                            56   _$L1 :
+                                   57   CBLOCKEND 0 2 22
+                                   58   
+                                   59   ;;}
+                                   60   CLINEA 0000H 0001H 0016H 0001H 0001H
+00:001A 1F-FE                      61   	rt
+                                   62   CBLOCKEND 0 1 22
+                                   63   CFUNCTIONEND 0
+                                   64   
+                                   65   	public _Delay
+                                   66   	_Flag comm data 02h #00h
+                                   67   	extrn code near : _main
+                                   68   
+  --------------------------       69   	rseg $$NINITTAB
+??:0000 00-00                      70   	dw	00h
+                                   71   
+  --------------------------       72   	rseg $$NINITVAR
+00:0000                            73   _$ST0 :
+00:0000                            74   	ds	02h
+                                   75   
+                                   76   	end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 76

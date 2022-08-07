@@ -1,0 +1,212 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: source files\reset.asm
+ Object File: source files\reset.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;; Compile Options : /TML621367 /MS /near /SD /Od /W 1 /Fasource files\ /Zs 
+                                    2   ;; Version Number  : Ver.3.64.5
+                                    3   ;; File Name       : reset.c
+                                    4   
+                                    5   	type (ML621367) 
+                                    6   	model small, near
+                                    7   	$$reset_detBrkr$reset segment code 2h #0h
+                                    8   	$$reset_detFiar$reset segment code 2h #0h
+                                    9   	$$reset_detPor$reset segment code 2h #0h
+                                   10   	$$reset_detRper$reset segment code 2h #0h
+                                   11   	$$reset_detRstr$reset segment code 2h #0h
+                                   12   	$$reset_detVls0r$reset segment code 2h #0h
+                                   13   	$$reset_detWdtr$reset segment code 2h #0h
+                                   14   	$$reset_detWdtwr$reset segment code 2h #0h
+                                   15   CVERSION 3.64.5
+                                   16   CGLOBAL 01H 03H 0000H "reset_detBrkr" 08H 02H 00H 00H 80H 00H 00H 00H 07H
+                                   17   CGLOBAL 01H 03H 0000H "reset_detFiar" 08H 02H 07H 00H 80H 00H 00H 00H 07H
+                                   18   CGLOBAL 01H 03H 0000H "reset_detVls0r" 08H 02H 02H 00H 80H 00H 00H 00H 07H
+                                   19   CGLOBAL 01H 03H 0000H "reset_detWdtwr" 08H 02H 03H 00H 80H 00H 00H 00H 07H
+                                   20   CGLOBAL 01H 03H 0000H "reset_detRper" 08H 02H 06H 00H 80H 00H 00H 00H 07H
+                                   21   CGLOBAL 01H 03H 0000H "reset_detRstr" 08H 02H 01H 00H 80H 00H 00H 00H 07H
+                                   22   CGLOBAL 01H 03H 0000H "reset_detPor" 08H 02H 05H 00H 80H 00H 00H 00H 07H
+                                   23   CGLOBAL 01H 03H 0000H "reset_detWdtr" 08H 02H 04H 00H 80H 00H 00H 00H 07H
+                                   24   CSTRUCTTAG 0000H 0000H 0000H 0008H 00000001H "_Notag"
+                                   25   CSTRUCTMEM 52H 00000001H 00000000H "b0" 02H 00H 00H
+                                   26   CSTRUCTMEM 52H 00000001H 00000001H "b1" 02H 00H 00H
+                                   27   CSTRUCTMEM 52H 00000001H 00000002H "b2" 02H 00H 00H
+                                   28   CSTRUCTMEM 52H 00000001H 00000003H "b3" 02H 00H 00H
+                                   29   CSTRUCTMEM 52H 00000001H 00000004H "b4" 02H 00H 00H
+                                   30   CSTRUCTMEM 52H 00000001H 00000005H "b5" 02H 00H 00H
+                                   31   CSTRUCTMEM 52H 00000001H 00000006H "b6" 02H 00H 00H
+                                   32   CSTRUCTMEM 52H 00000001H 00000007H "b7" 02H 00H 00H
+                                   33   CTYPEDEF 0000H 0000H 43H "_BYTE_FIELD" 04H 00H 05H 00H 00H
+                                   34   CFILE 0001H 0000117DH "D:\\U8Dev\\Inc\\ml621367.h"
+                                   35   CFILE 0002H 0000004BH "..\\source files\\rdwr_reg.h"
+                                   36   CFILE 0003H 000000ACH "..\\source files\\reset.h"
+                                   37   CFILE 0004H 00000030H "..\\source files\\reset_common.h"
+                                   38   CFILE 0000H 0000009DH "..\\source files\\reset.c"
+                                   39   
+  --------------------------       40   	rseg $$reset_detBrkr$reset
+                                   41   CFUNCTION 0
+                                   42   
+00:0000                            43   _reset_detBrkr	:
+                                   44   CBLOCK 0 1 56
+                                   45   
+                                   46   ;;void reset_detBrkr( void ) {
+                                   47   CLINEA 0000H 0001H 0038H 0001H 001CH
+                                   48   CBLOCK 0 2 56
+                                   49   CBLOCKEND 0 2 58
+                                   50   
+                                   51   ;;}
+                                   52   CLINEA 0000H 0001H 003AH 0001H 0001H
+00:0000 1F-FE                      53   	rt
+                                   54   CBLOCKEND 0 1 58
+                                   55   CFUNCTIONEND 0
+                                   56   
+                                   57   
+  --------------------------       58   	rseg $$reset_detRstr$reset
+                                   59   CFUNCTION 1
+                                   60   
+00:0000                            61   _reset_detRstr	:
+                                   62   CBLOCK 1 1 71
+                                   63   
+                                   64   ;;void reset_detRstr( void ) {
+                                   65   CLINEA 0000H 0001H 0047H 0001H 001CH
+                                   66   CBLOCK 1 2 71
+                                   67   CBLOCKEND 1 2 73
+                                   68   
+                                   69   ;;}
+                                   70   CLINEA 0000H 0001H 0049H 0001H 0001H
+00:0000 1F-FE                      71   	rt
+                                   72   CBLOCKEND 1 1 73
+                                   73   CFUNCTIONEND 1
+                                   74   
+                                   75   
+  --------------------------       76   	rseg $$reset_detVls0r$reset
+                                   77   CFUNCTION 2
+                                   78   
+00:0000                            79   _reset_detVls0r	:
+                                   80   CBLOCK 2 1 85
+                                   81   
+                                   82   ;;void reset_detVls0r( void ) {
+                                   83   CLINEA 0000H 0001H 0055H 0001H 001DH
+                                   84   CBLOCK 2 2 85
+                                   85   CBLOCKEND 2 2 87
+                                   86   
+                                   87   ;;}
+                                   88   CLINEA 0000H 0001H 0057H 0001H 0001H
+00:0000 1F-FE                      89   	rt
+                                   90   CBLOCKEND 2 1 87
+                                   91   CFUNCTIONEND 2
+                                   92   
+                                   93   
+  --------------------------       94   	rseg $$reset_detWdtwr$reset
+                                   95   CFUNCTION 3
+                                   96   
+00:0000                            97   _reset_detWdtwr	:
+                                   98   CBLOCK 3 1 99
+                                   99   
+                                  100   ;;void reset_detWdtwr( void ) {
+                                  101   CLINEA 0000H 0001H 0063H 0001H 001DH
+                                  102   CBLOCK 3 2 99
+                                  103   CBLOCKEND 3 2 101
+                                  104   
+                                  105   ;;}
+                                  106   CLINEA 0000H 0001H 0065H 0001H 0001H
+00:0000 1F-FE                     107   	rt
+                                  108   CBLOCKEND 3 1 101
+                                  109   CFUNCTIONEND 3
+                                  110   
+                                  111   
+  --------------------------      112   	rseg $$reset_detWdtr$reset
+                                  113   CFUNCTION 4
+                                  114   
+00:0000                           115   _reset_detWdtr	:
+                                  116   CBLOCK 4 1 113
+                                  117   
+                                  118   ;;void reset_detWdtr( void ) {
+                                  119   CLINEA 0000H 0001H 0071H 0001H 001CH
+                                  120   CBLOCK 4 2 113
+                                  121   CBLOCKEND 4 2 115
+                                  122   
+                                  123   ;;}
+                                  124   CLINEA 0000H 0001H 0073H 0001H 0001H
+00:0000 1F-FE                     125   	rt
+                                  126   CBLOCKEND 4 1 115
+                                  127   CFUNCTIONEND 4
+                                  128   
+                                  129   
+  --------------------------      130   	rseg $$reset_detPor$reset
+                                  131   CFUNCTION 5
+                                  132   
+00:0000                           133   _reset_detPor	:
+                                  134   CBLOCK 5 1 126
+                                  135   
+                                  136   ;;void reset_detPor( void ) {
+                                  137   CLINEA 0000H 0001H 007EH 0001H 001BH
+                                  138   CBLOCK 5 2 126
+                                  139   CBLOCKEND 5 2 128
+                                  140   
+                                  141   ;;}
+                                  142   CLINEA 0000H 0001H 0080H 0001H 0001H
+00:0000 1F-FE                     143   	rt
+                                  144   CBLOCKEND 5 1 128
+                                  145   CFUNCTIONEND 5
+                                  146   
+                                  147   
+  --------------------------      148   	rseg $$reset_detRper$reset
+                                  149   CFUNCTION 6
+                                  150   
+00:0000                           151   _reset_detRper	:
+                                  152   CBLOCK 6 1 140
+                                  153   
+                                  154   ;;void reset_detRper( void ) {
+                                  155   CLINEA 0000H 0001H 008CH 0001H 001CH
+                                  156   CBLOCK 6 2 140
+                                  157   CBLOCKEND 6 2 142
+                                  158   
+                                  159   ;;}
+                                  160   CLINEA 0000H 0001H 008EH 0001H 0001H
+00:0000 1F-FE                     161   	rt
+                                  162   CBLOCKEND 6 1 142
+                                  163   CFUNCTIONEND 6
+                                  164   
+                                  165   
+  --------------------------      166   	rseg $$reset_detFiar$reset
+                                  167   CFUNCTION 7
+                                  168   
+00:0000                           169   _reset_detFiar	:
+                                  170   CBLOCK 7 1 154
+                                  171   
+                                  172   ;;void reset_detFiar( void ) {
+                                  173   CLINEA 0000H 0001H 009AH 0001H 001CH
+                                  174   CBLOCK 7 2 154
+                                  175   CBLOCKEND 7 2 156
+                                  176   
+                                  177   ;;}
+                                  178   CLINEA 0000H 0001H 009CH 0001H 0001H
+00:0000 1F-FE                     179   	rt
+                                  180   CBLOCKEND 7 1 156
+                                  181   CFUNCTIONEND 7
+                                  182   
+                                  183   	public _reset_detBrkr
+                                  184   	public _reset_detFiar
+                                  185   	public _reset_detVls0r
+                                  186   	public _reset_detWdtwr
+                                  187   	public _reset_detRper
+                                  188   	public _reset_detRstr
+                                  189   	public _reset_detPor
+                                  190   	public _reset_detWdtr
+                                  191   	extrn code near : _main
+                                  192   
+                                  193   	end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 193

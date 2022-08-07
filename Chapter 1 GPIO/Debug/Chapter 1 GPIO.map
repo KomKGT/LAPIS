@@ -1,0 +1,320 @@
+RLU8 Object Linker, Ver.1.60.3 Linkage Information
+[Tue Jun  7 16:21:59 2022]
+
+
+                         ------------------
+                          Control Synopsis
+                         ------------------
+
+I/O controls:    D  SD NS NA
+Other controls: CC ABW 
+                COMB( $$content_of_init $$end_of_init )
+                COMB( $$init_info $$init_info_end )
+
+
+
+                        ------------------------
+                         Object Module Synopsis
+                        ------------------------
+                                                                Creator
+Module Name           File Name                                 CCU8     RASU8
+-----------           ---------                                 -----    -----
+BlinkLED              .\source files\BlinkLED.obj               3.64     1.80
+VLS                   .\source files\VLS.obj                    3.64     1.80
+irq_template          .\source files\irq_template.obj           3.64     1.80
+main                  .\source files\main.obj                   3.64     1.80
+reset                 .\source files\reset.obj                  3.64     1.80
+time_delay            .\source files\time_delay.obj             3.64     1.80
+timer0                .\source files\timer0.obj                 3.64     1.80
+wdt                   .\source files\wdt.obj                    3.64     1.80
+ML621367              .\ML621367.obj                            -.--     1.80
+
+
+Number of Modules: 9
+
+Number of Symbols:
+ +---------------------------------------------------------------------------+
+ |          | CODE | DATA | BIT  |NVDATA|NVBIT |TABLE |NUMBER| TBIT || total |
+ |----------+------+------+------+------+------+------+------+------++-------|
+ | SEGMENT  |    80|     2|     0|     0|     0|     7|      |      ||     89|
+ |----------+------+------+------+------+------+------+------+------++-------|
+ | COMMUNAL |     0|     1|     0|     0|     0|     0|      |      ||      1|
+ |----------+------+------+------+------+------+------+------+------++-------|
+ | PUBLIC   |    25|     8|     0|     0|     0|     0|     0|     0||     33|
+ +---------------------------------------------------------------------------+
+
+Target:  ML621367 
+Model:   SMALL
+
+
+Memory Map - Program memory space #0:
+      Type     Start      Stop
+     -----------------------------
+      ROM      00:0000    00:FFFF
+
+Memory Map - Data memory space #0:
+      Type     Start      Stop
+     -----------------------------
+      RAM      00:E000    00:FFFF
+
+Memory Map - Memory space above #1:
+      Type     Start      Stop
+     -----------------------------
+      ROM      01:0000    01:03FF
+      ROM      08:0000    09:03FF
+      ROM      1F:0000    1F:07FF
+
+                         ------------------
+                          Segment Synopsis
+                         ------------------
+
+Link Map - Program memory space #0 ( ROMWINDOW: 0000 - DFFF )
+
+      Type     Start      Stop       Size              Name
+     -------------------------------------------------------
+      S CODE   00:0000    00:0001    0002(2)           (absolute)
+      S CODE   00:0002    00:0003    0002(2)           (absolute)
+      S CODE   00:0004    00:0005    0002(2)           (absolute)
+      S CODE   00:0006    00:0007    0002(2)           (absolute)
+      S CODE   00:0008    00:0009    0002(2)           (absolute)
+      S CODE   00:000A    00:000B    0002(2)           $$s_handlerTM2INT$irq_template
+      S CODE   00:000C    00:000D    0002(2)           (absolute)
+      S CODE   00:000E    00:000F    0002(2)           $$s_handlerFTM3INT$irq_template
+      S CODE   00:0010    00:001F    0010(16)          (absolute)
+      S CODE   00:0020    00:0020    0000(0)           $$content_of_init
+      S CODE   00:0020    00:0021    0002(2)           $$end_of_init
+      S CODE   00:0022    00:0023    0002(2)           (absolute)
+      S CODE   00:0024    00:0025    0002(2)           $$s_handlerEXI3INT$irq_template
+      S CODE   00:0026    00:0029    0004(4)           (absolute)
+      S CODE   00:002A    00:002B    0002(2)           $$s_handlerEXI7INT$irq_template
+      S CODE   00:002C    00:002D    0002(2)           (absolute)
+      S CODE   00:002E    00:002F    0002(2)           $$s_handlerDMACINT$irq_template
+      S CODE   00:0030    00:0031    0002(2)           $$s_handlerLTBC1INT$irq_template
+      S CODE   00:0032    00:0033    0002(2)           $$s_handlerTM3INT$irq_template
+      S CODE   00:0034    00:0035    0002(2)           (absolute)
+      S CODE   00:0036    00:0037    0002(2)           $$s_handlerSIU01INT$irq_template
+      S CODE   00:0038    00:0045    000E(14)          (absolute)
+      S CODE   00:0046    00:0047    0002(2)           $$s_handlerSIU11INT$irq_template
+      S CODE   00:0048    00:004F    0008(8)           (absolute)
+      S CODE   00:0050    00:0051    0002(2)           $$s_handlerCMP0INT$irq_template
+      S CODE   00:0052    00:0053    0002(2)           $$s_handlerEXI4INT$irq_template
+      S CODE   00:0054    00:0055    0002(2)           (absolute)
+      S CODE   00:0056    00:0057    0002(2)           $$s_handlerEXI0INT$irq_template
+      S CODE   00:0058    00:0059    0002(2)           $$s_handlerFTM0INT$irq_template
+      S CODE   00:005A    00:005B    0002(2)           $$s_handlerVLS0INT$irq_template
+      S CODE   00:005C    00:005F    0004(4)           (absolute)
+      S TABLE  00:0060    00:0071    0012(18)          $$NINITTAB
+      S CODE   00:0072    00:0073    0002(2)           $$s_handlerLTBC2INT$irq_template
+      S CODE   00:0074    00:0075    0002(2)           (absolute)
+      S CODE   00:0076    00:0077    0002(2)           $$s_handlerTM4INT$irq_template
+      S CODE   00:0078    00:007B    0004(4)           (absolute)
+      S TABLE  00:007C    00:0083    0008(8)           $$init_info
+      S TABLE  00:0084    00:0085    0002(2)           $$init_info_end
+      S CODE   00:0086    00:00CF    004A(74)          $$Init_LED$BlinkLED
+      S CODE   00:00D0    00:016B    009C(156)         $$NCODml621367sw
+      S CODE   00:016C    00:018F    0024(36)          $$wdt_clear$wdt
+      S CODE   00:0190    00:01EF    0060(96)          $$InitSystemClock$main
+      S CODE   00:01F0    00:05BD    03CE(974)         $$Init_Port$main
+      S CODE   00:05BE    00:05EF    0032(50)          $$Timer0_Interrupt$timer0
+      S CODE   00:05F0    00:060F    0020(32)          $$s_handlerTM0INT$irq_template
+      S CODE   00:0610    00:0613    0004(4)           $$s_handlerWDTINT$irq_template
+      S CODE   00:0614    00:0615    0002(2)           $$s_handlerSADINT$irq_template
+      S CODE   00:0616    00:0617    0002(2)           $$s_handlerSIU00INT$irq_template
+      S CODE   00:0618    00:0619    0002(2)           $$s_handlerSIU10INT$irq_template
+      S CODE   00:061A    00:0635    001C(28)          $$Delay$time_delay
+      S CODE   00:0636    00:065B    0026(38)          $$wdt_init$wdt
+      S CODE   00:065C    00:0665    000A(10)          $$LEDoff$BlinkLED
+      S CODE   00:0666    00:0667    0002(2)           $$s_handlerEXI5INT$irq_template
+      S CODE   00:0668    00:0669    0002(2)           $$s_handlerEXI1INT$irq_template
+      S CODE   00:066A    00:066B    0002(2)           $$s_handlerFTM1INT$irq_template
+      S CODE   00:066C    00:0693    0028(40)          $$main$main
+      S CODE   00:0694    00:06AF    001C(28)          $$Init_MCU$main
+      S CODE   00:06B0    00:06B1    0002(2)           $$s_handlerTM1INT$irq_template
+      S CODE   00:06B2    00:06B3    0002(2)           $$s_handlerTM5INT$irq_template
+      S CODE   00:06B4    00:06B5    0002(2)           $$s_handlerI2CU0INT$irq_template
+      S CODE   00:06B6    00:06BF    000A(10)          $$LEDon$BlinkLED
+      S CODE   00:06C0    00:06C1    0002(2)           $$s_handlerI2CM0INT$irq_template
+      S CODE   00:06C2    00:06C3    0002(2)           $$s_handlerFTM2INT$irq_template
+      S CODE   00:06C4    00:06C5    0002(2)           $$s_handlerEXI2INT$irq_template
+      S CODE   00:06C6    00:06C7    0002(2)           $$s_handlerEXI6INT$irq_template
+      S CODE   00:06C8    00:0751    008A(138)         $$Set_VLS_Startup$VLS
+      S CODE   00:0752    00:0787    0036(54)          $$Init_Timer0$timer0
+      S CODE   00:0788    00:0789    0002(2)           $$s_handlerLTBC0INT$irq_template
+>GAP<          00:078A    00:FFBF    F836(63542)       (ROM)
+      S CODE   00:FFC0    00:FFCF    0010(16)          (absolute)
+      S CODE   00:FFD0    00:FFD1    0002(2)           (absolute)
+      S CODE   00:FFD2    00:FFDF    000E(14)          (absolute)
+      S CODE   00:FFE0    00:FFFF    0020(32)          (absolute)
+
+
+Link Map - Data memory space #0
+
+      Type     Start      Stop       Size              Name
+     -------------------------------------------------------
+      Q ROMWIN 00:0000    00:DFFF    E000(57344)       (ROMWIN)
+>GAP<          00:E000.0  00:EBEB.7  0BEC.0(3052.0)    (RAM)
+      S DATA   00:EBEC    00:EFEB    0400(1024)        $STACK
+      C DATA   00:EFEC    00:EFED    0002(2)           _Flag
+      S DATA   00:EFEE    00:EFFF    0012(18)          $$NINITVAR
+      Q SFR    00:F000    00:FFFF    1000(4096)        (SFR)
+
+
+Link Map - Memory space above #1
+
+      Type     Start      Stop       Size              Name
+     -------------------------------------------------------
+      S TABLE* 01:0000    01:03FF    0400(1024)        (absolute)
+ ---
+      S TABLE* 08:0000    08:FFFF    10000(65536)      (absolute)
+ ---
+      S TABLE* 09:0000    09:03FF    0400(1024)        (absolute)
+ ---
+      S TABLE* 1F:0000    1F:07FF    0800(2048)        (absolute)
+
+
+Not Linked segments:
+
+      Module Name         Type       Size              Segment Name 
+     --------------------------------------------------------------
+      BlinkLED
+                          CODE       001C(28)          $$Display$BlinkLED
+     --------------------------------------------------------------
+      VLS
+                          CODE       003E(62)          $$Set_VLS_Monitoring$VLS
+     --------------------------------------------------------------
+      reset
+                          CODE       0002(2)           $$reset_detRstr$reset
+                          CODE       0002(2)           $$reset_detWdtwr$reset
+                          CODE       0002(2)           $$reset_detPor$reset
+                          CODE       0002(2)           $$reset_detVls0r$reset
+                          CODE       0002(2)           $$reset_detWdtr$reset
+                          CODE       0002(2)           $$reset_detFiar$reset
+                          CODE       0002(2)           $$reset_detBrkr$reset
+                          CODE       0002(2)           $$reset_detRper$reset
+     --------------------------------------------------------------
+      timer0
+                          CODE       0058(88)          $$RealTimeClock$timer0
+     --------------------------------------------------------------
+
+
+Total size (CODE  ) = 007AE   (1966)
+Total size (DATA  ) = 00414   (1044)
+Total size (BIT   ) = 00000.0 (0.0)
+Total size (NVDATA) = 00000   (0)
+Total size (NVBIT ) = 00000.0 (0.0)
+Total size (TABLE ) = 1101C   (69660)
+
+          -----------------------
+           Symbol Table Synopsis
+          -----------------------
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+BlinkLED
+               00:06B6   Pub CODE     _LEDon
+               00:0086   Pub CODE     _Init_LED
+               00:065C   Pub CODE     _LEDoff
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+VLS
+               00:06C8   Pub CODE     _Set_VLS_Startup
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+irq_template
+               00:0072   Loc CODE     _s_handlerLTBC2INT
+               00:06B0   Loc CODE     _s_handlerTM1INT
+               00:0050   Loc CODE     _s_handlerCMP0INT
+               00:06B4   Loc CODE     _s_handlerI2CU0INT
+               00:06C0   Loc CODE     _s_handlerI2CM0INT
+               00:05F0   Loc CODE     _s_handlerTM0INT
+               00:06C2   Loc CODE     _s_handlerFTM2INT
+               00:000E   Loc CODE     _s_handlerFTM3INT
+               00:005A   Loc CODE     _s_handlerVLS0INT
+               00:0614   Loc CODE     _s_handlerSADINT
+               00:0032   Loc CODE     _s_handlerTM3INT
+               00:000A   Loc CODE     _s_handlerTM2INT
+               00:0052   Loc CODE     _s_handlerEXI4INT
+               00:0666   Loc CODE     _s_handlerEXI5INT
+               00:0036   Loc CODE     _s_handlerSIU01INT
+               00:0056   Loc CODE     _s_handlerEXI0INT
+               00:0616   Loc CODE     _s_handlerSIU00INT
+               00:0668   Loc CODE     _s_handlerEXI1INT
+               00:06C6   Loc CODE     _s_handlerEXI6INT
+               00:002A   Loc CODE     _s_handlerEXI7INT
+               00:0046   Loc CODE     _s_handlerSIU11INT
+               00:0610   Loc CODE     _s_handlerWDTINT
+               00:0618   Loc CODE     _s_handlerSIU10INT
+               00:06C4   Loc CODE     _s_handlerEXI2INT
+               00:002E   Loc CODE     _s_handlerDMACINT
+               00:0024   Loc CODE     _s_handlerEXI3INT
+               00:06B2   Loc CODE     _s_handlerTM5INT
+               00:0076   Loc CODE     _s_handlerTM4INT
+               00:0788   Loc CODE     _s_handlerLTBC0INT
+               00:0030   Loc CODE     _s_handlerLTBC1INT
+               00:0058   Loc CODE     _s_handlerFTM0INT
+               00:066A   Loc CODE     _s_handlerFTM1INT
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+main
+               00:066C   Pub CODE     _main
+               00:0190   Pub CODE     _InitSystemClock
+               00:0694   Pub CODE     _Init_MCU
+               00:01F0   Pub CODE     _Init_Port
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+reset
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+time_delay
+               00:061A   Pub CODE     _Delay
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+timer0
+               00:0752   Pub CODE     _Init_Timer0
+               00:05BE   Pub CODE     _Timer0_Interrupt
+               00:EFF8   Pub DATA     _CountmSec
+               00:EFF4   Pub DATA     _counttest
+               00:EFFA   Pub DATA     _BuzzCount
+               00:EFF3   Pub DATA     _Hour
+               00:EFF6   Pub DATA     _t_cnt
+               00:EFF0   Pub DATA     _Msec
+               00:EFF2   Pub DATA     _Min
+               00:EFF1   Pub DATA     _Sec
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+wdt
+               00:016C   Pub CODE     _wdt_clear
+               00:0636   Pub CODE     _wdt_init
+
+Module         Value     Type         Symbol
+------         -----     ----------   ------
+ML621367
+              0000EFFF   Loc NUMBER   NEAR_RAM_END
+              0000E000   Loc NUMBER   NEAR_RAM_START
+              000000FF   Loc NUMBER   _$$WINVAL
+               00:00D6   Loc CODE     $$error
+               00:DFFF   Loc TABLE    _$$ROMWINEND
+               00:00F2   Loc CODE     $begin
+               00:0000   Loc TABLE    _$$ROMWINSTART
+               00:0112   Loc CODE     __init_loop
+               00:015E   Loc CODE     __init_end
+               00:00D6   Loc CODE     $$brk_reset
+               00:011E   Loc CODE     __skip
+               00:013A   Loc CODE     __init_loop2
+               00:014C   Loc CODE     __loop_by_byte
+               00:0100   Loc CODE     __near_ram_loop
+               00:00D0   Pub CODE     $$start_up
+
+
+
+Total ROM usage = 007CA   (1994)
+Total RAM usage = 00414   (1044)
+
+End of mapfile.

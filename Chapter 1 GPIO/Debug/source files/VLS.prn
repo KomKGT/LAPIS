@@ -1,0 +1,258 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: source files\VLS.asm
+ Object File: source files\VLS.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;; Compile Options : /TML621367 /MS /near /SD /Od /W 1 /Fasource files\ /Zs 
+                                    2   ;; Version Number  : Ver.3.64.5
+                                    3   ;; File Name       : VLS.c
+                                    4   
+                                    5   	type (ML621367) 
+                                    6   	model small, near
+                                    7   	$$Set_VLS_Monitoring$VLS segment code 2h #0h
+                                    8   	$$Set_VLS_Startup$VLS segment code 2h #0h
+                                    9   CVERSION 3.64.5
+                                   10   CGLOBAL 01H 03H 0000H "Set_VLS_Startup" 08H 02H 00H 00H 83H 06H 00H 00H 07H
+                                   11   CGLOBAL 01H 03H 0000H "Set_VLS_Monitoring" 08H 02H 02H 00H 80H 00H 00H 00H 07H
+                                   12   CSTRUCTTAG 0000H 0000H 0000H 0008H 00000001H "_Notag"
+                                   13   CSTRUCTMEM 52H 00000001H 00000000H "b0" 02H 00H 00H
+                                   14   CSTRUCTMEM 52H 00000001H 00000001H "b1" 02H 00H 00H
+                                   15   CSTRUCTMEM 52H 00000001H 00000002H "b2" 02H 00H 00H
+                                   16   CSTRUCTMEM 52H 00000001H 00000003H "b3" 02H 00H 00H
+                                   17   CSTRUCTMEM 52H 00000001H 00000004H "b4" 02H 00H 00H
+                                   18   CSTRUCTMEM 52H 00000001H 00000005H "b5" 02H 00H 00H
+                                   19   CSTRUCTMEM 52H 00000001H 00000006H "b6" 02H 00H 00H
+                                   20   CSTRUCTMEM 52H 00000001H 00000007H "b7" 02H 00H 00H
+                                   21   CTYPEDEF 0000H 0000H 43H "_BYTE_FIELD" 04H 00H 05H 00H 00H
+                                   22   CFILE 0001H 0000117DH "D:\\U8Dev\\Inc\\ml621367.h"
+                                   23   CFILE 0000H 00000038H "..\\source files\\VLS.c"
+                                   24   
+  --------------------------       25   	rseg $$Set_VLS_Startup$VLS
+                                   26   CFUNCTION 0
+                                   27   
+00:0000                            28   _Set_VLS_Startup	:
+                                   29   CBLOCK 0 1 8
+                                   30   
+                                   31   ;;{
+                                   32   CLINEA 0000H 0001H 0008H 0001H 0001H
+00:0000 CE-F8                      33   	push	lr
+00:0002 5E-FE                      34   	push	fp
+00:0004 1A-AE                      35   	mov	fp,	sp
+00:0006 FE E1                      36   	add	sp,	#-02
+                                   37   CBLOCK 0 2 8
+                                   38   CRET 0004H
+                                   39   CLOCAL 42H 0002H 0002H 0002H "i" 02H 00H 01H
+                                   40   
+                                   41   ;;	VLS0EN = 0;		// Disable VLS(Voltage Level Supervisor)
+                                   42   CLINEA 0000H 0001H 000BH 0002H 0036H
+00:0008 82-A0 50-F8                43   	rb	0f850h.0
+                                   44   
+                                   45   ;;	VLS0AMD1=1;VLS0AMD0=0;	// Supervisor mode
+                                   46   CLINEA 0000H 0001H 000DH 0002H 002AH
+00:000C D0-A0 52-F8                47   	sb	0f852h.5
+00:0010 C2-A0 52-F8                48   	rb	0f852h.4
+                                   49   
+                                   50   ;;	VLS0SEL1=0;VLS0SEL0=0;  // No reset, no interrupt
+                                   51   CLINEA 0000H 0001H 000EH 0002H 0032H
+00:0014 92-A0 52-F8                52   	rb	0f852h.1
+00:0018 82-A0 52-F8                53   	rb	0f852h.0
+                                   54   
+                                   55   ;;	VLS0SM1=0;VLS0SM0=0;	// Without sampling 
+                                   56   CLINEA 0000H 0001H 000FH 0002H 002AH
+00:001C B2-A0 56-F8                57   	rb	0f856h.3
+00:0020 A2-A0 56-F8                58   	rb	0f856h.2
+                                   59   
+                                   60   ;;	VLS0DIV2=0;VLS0DIV1=0;VLS0DIV0=0;	// No clock division
+                                   61   CLINEA 0000H 0001H 0010H 0002H 0037H
+00:0024 E2-A0 56-F8                62   	rb	0f856h.6
+00:0028 D2-A0 56-F8                63   	rb	0f856h.5
+00:002C C2-A0 56-F8                64   	rb	0f856h.4
+                                   65   
+                                   66   ;;	VLS0LV3=1;VLS0LV2=0;VLS0LV1=1;VLS0LV0=1;	// Threshold = 1.85 V
+                                   67   CLINEA 0000H 0001H 0011H 0002H 003FH
+00:0030 B0-A0 54-F8                68   	sb	0f854h.3
+00:0034 A2-A0 54-F8                69   	rb	0f854h.2
+00:0038 90-A0 54-F8                70   	sb	0f854h.1
+00:003C 80-A0 54-F8                71   	sb	0f854h.0
+                                   72   
+                                   73   ;;	VLS0EN = 1;		// Enable VLS(Voltage Level Supervisor)		
+                                   74   CLINEA 0000H 0001H 0013H 0002H 0037H
+00:0040 80-A0 50-F8                75   	sb	0f850h.0
+                                   76   
+                                   77   ;;	__asm("nop");
+                                   78   CLINEA 0000H 0001H 0014H 0002H 000EH
+00:0044 8F-FE                      79   nop
+                                   80   
+                                   81   ;;	__asm("nop");
+                                   82   CLINEA 0000H 0001H 0015H 0002H 000EH
+00:0046 8F-FE                      83   nop
+                                   84   
+                                   85   ;;	__asm("nop");
+                                   86   CLINEA 0000H 0001H 0016H 0002H 000EH
+00:0048 8F-FE                      87   nop
+                                   88   
+                                   89   ;;	__asm("nop");
+                                   90   CLINEA 0000H 0001H 0017H 0002H 000EH
+00:004A 8F-FE                      91   nop
+                                   92   
+                                   93   ;;	__asm("nop");
+                                   94   CLINEA 0000H 0001H 0018H 0002H 000EH
+00:004C 8F-FE                      95   nop
+                                   96   
+                                   97   ;;	__asm("nop");
+                                   98   CLINEA 0000H 0001H 0019H 0002H 000EH
+00:004E 8F-FE                      99   nop
+                                  100   
+                                  101   ;;	__asm("nop");
+                                  102   CLINEA 0000H 0001H 001AH 0002H 000EH
+00:0050 8F-FE                     103   nop
+                                  104   
+                                  105   ;;	__asm("nop");
+                                  106   CLINEA 0000H 0001H 001BH 0002H 000EH
+00:0052 8F-FE                     107   nop
+                                  108   
+                                  109   ;;	while(VLS0RF==0)
+                                  110   CLINEA 0000H 0001H 001DH 0002H 0011H
+00:0054 02 CE                     111   	bal	_$L1
+00:0056                           112   _$L3 :
+                                  113   
+                                  114   ;;		wdt_clear();
+                                  115   CLINEA 0000H 0001H 001EH 0003H 000EH
+00:0056 01-F0'00-00'              116   	bl	_wdt_clear
+00:005A                           117   _$L1 :
+                                  118   
+                                  119   ;;	while(VLS0RF==0)
+                                  120   CLINEA 0000H 0000H 001DH 000AH 000FH
+00:005A A1-A0 50-F8               121   	tb	0f850h.2
+00:005E FB C9                     122   	beq	_$L3
+                                  123   
+                                  124   ;;	for(i=0;i<200;i++)
+                                  125   CLINEA 0000H 0001H 0020H 0006H 0009H
+00:0060 00 E0                     126   	mov	er0,	#0 
+00:0062 FE B0                     127   	st	er0,	-2[fp]
+                                  128   
+                                  129   ;;	for(i=0;i<200;i++)
+                                  130   CLINEA 0000H 0000H 0020H 000AH 000FH
+00:0064 C8 70                     131   	cmp	r0,	#0c8h
+00:0066 00 51                     132   	cmpc	r1,	#00h
+00:0068 0A C0                     133   	bge	_$L11
+                                  134   
+                                  135   ;;	for(i=0;i<200;i++)
+                                  136   CLINEA 0000H 0000H 0020H 0010H 0012H
+00:006A                           137   _$L7 :
+                                  138   
+                                  139   ;;	for(i=0;i<200;i++)
+                                  140   CLINEA 0000H 0000H 0020H 0010H 0012H
+00:006A 7E B0                     141   	l	er0,	-2[fp]
+00:006C 81 E0                     142   	add	er0,	#1 
+00:006E FE B0                     143   	st	er0,	-2[fp]
+                                  144   
+                                  145   ;;	for(i=0;i<200;i++)
+                                  146   CLINEA 0000H 0000H 0020H 000AH 000FH
+00:0070 7E B0                     147   	l	er0,	-2[fp]
+00:0072 C8 70                     148   	cmp	r0,	#0c8h
+00:0074 00 51                     149   	cmpc	r1,	#00h
+00:0076 F9 C1                     150   	blt	_$L7
+                                  151   
+                                  152   ;;	while(VLS0F==1)
+                                  153   CLINEA 0000H 0001H 0022H 0002H 0010H
+00:0078 02 CE                     154   	bal	_$L11
+00:007A                           155   _$L13 :
+                                  156   
+                                  157   ;;		wdt_clear();
+                                  158   CLINEA 0000H 0001H 0023H 0003H 000EH
+00:007A 01-F0'00-00'              159   	bl	_wdt_clear
+00:007E                           160   _$L11 :
+                                  161   
+                                  162   ;;	while(VLS0F==1)
+                                  163   CLINEA 0000H 0000H 0022H 000AH 000FH
+00:007E 91-A0 50-F8               164   	tb	0f850h.1
+00:0082 FB C8                     165   	bne	_$L13
+                                  166   
+                                  167   ;;		wdt_clear();
+                                  168   CLINEA 0000H 0000H 0023H 0003H 000EH
+                                  169   CBLOCKEND 0 2 36
+                                  170   
+                                  171   ;;}
+                                  172   CLINEA 0000H 0001H 0024H 0001H 0001H
+00:0084 EA-A1                     173   	mov	sp,	fp
+00:0086 1E-FE                     174   	pop	fp
+00:0088 8E-F2                     175   	pop	pc
+                                  176   CBLOCKEND 0 1 36
+                                  177   CFUNCTIONEND 0
+                                  178   
+                                  179   
+  --------------------------      180   	rseg $$Set_VLS_Monitoring$VLS
+                                  181   CFUNCTION 2
+                                  182   
+00:0000                           183   _Set_VLS_Monitoring	:
+                                  184   CBLOCK 2 1 39
+                                  185   
+                                  186   ;;{
+                                  187   CLINEA 0000H 0001H 0027H 0001H 0001H
+                                  188   CBLOCK 2 2 39
+                                  189   CLOCAL 4AH 0002H 0000H 0002H "i" 02H 00H 01H
+                                  190   
+                                  191   ;;	VLS0EN = 0;		// Disable VLS(Voltage Level Supervisor)
+                                  192   CLINEA 0000H 0001H 002AH 0002H 0036H
+00:0000 82-A0 50-F8               193   	rb	0f850h.0
+                                  194   
+                                  195   ;;	VLS0AMD1=1;VLS0AMD0=0;	// Supervisor mode
+                                  196   CLINEA 0000H 0001H 002CH 0002H 002AH
+00:0004 D0-A0 52-F8               197   	sb	0f852h.5
+00:0008 C2-A0 52-F8               198   	rb	0f852h.4
+                                  199   
+                                  200   ;;	VLS0SEL1=0;VLS0SEL0=0;  // No reset, no interrupt
+                                  201   CLINEA 0000H 0001H 002DH 0002H 0032H
+00:000C 92-A0 52-F8               202   	rb	0f852h.1
+00:0010 82-A0 52-F8               203   	rb	0f852h.0
+                                  204   
+                                  205   ;;	VLS0SM1=0;VLS0SM0=0;	// Without sampling 
+                                  206   CLINEA 0000H 0001H 002EH 0002H 002AH
+00:0014 B2-A0 56-F8               207   	rb	0f856h.3
+00:0018 A2-A0 56-F8               208   	rb	0f856h.2
+                                  209   
+                                  210   ;;	VLS0DIV2=0;VLS0DIV1=0;VLS0DIV0=0;	// No clock division
+                                  211   CLINEA 0000H 0001H 002FH 0002H 0037H
+00:001C E2-A0 56-F8               212   	rb	0f856h.6
+00:0020 D2-A0 56-F8               213   	rb	0f856h.5
+00:0024 C2-A0 56-F8               214   	rb	0f856h.4
+                                  215   
+                                  216   ;;	VLS0LV3=1;VLS0LV2=0;VLS0LV1=0;VLS0LV0=0;	// Threshold = 2.45 V
+                                  217   CLINEA 0000H 0001H 0030H 0002H 003FH
+00:0028 B0-A0 54-F8               218   	sb	0f854h.3
+00:002C A2-A0 54-F8               219   	rb	0f854h.2
+00:0030 92-A0 54-F8               220   	rb	0f854h.1
+00:0034 82-A0 54-F8               221   	rb	0f854h.0
+                                  222   
+                                  223   ;;	VLS0EN = 1;		// Enable VLS(Voltage Level Supervisor)		
+                                  224   CLINEA 0000H 0001H 0032H 0002H 0037H
+00:0038 80-A0 50-F8               225   	sb	0f850h.0
+                                  226   CBLOCKEND 2 2 51
+                                  227   
+                                  228   ;;}
+                                  229   CLINEA 0000H 0001H 0033H 0001H 0001H
+00:003C 1F-FE                     230   	rt
+                                  231   CBLOCKEND 2 1 51
+                                  232   CFUNCTIONEND 2
+                                  233   
+                                  234   	extrn code near : _wdt_clear
+                                  235   	public _Set_VLS_Startup
+                                  236   	public _Set_VLS_Monitoring
+                                  237   	extrn code near : _main
+                                  238   
+                                  239   	end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 239

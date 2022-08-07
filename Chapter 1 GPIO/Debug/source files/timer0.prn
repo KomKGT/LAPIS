@@ -1,0 +1,328 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: source files\timer0.asm
+ Object File: source files\timer0.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;; Compile Options : /TML621367 /MS /near /SD /Od /W 1 /Fasource files\ /Zs 
+                                    2   ;; Version Number  : Ver.3.64.5
+                                    3   ;; File Name       : timer0.c
+                                    4   
+                                    5   	type (ML621367) 
+                                    6   	model small, near
+                                    7   	$$NINITVAR segment data 2h #0h
+                                    8   	$$NINITTAB segment table 2h any
+                                    9   	$$Init_Timer0$timer0 segment code 2h #0h
+                                   10   	$$RealTimeClock$timer0 segment code 2h #0h
+                                   11   	$$Timer0_Interrupt$timer0 segment code 2h #0h
+                                   12   CVERSION 3.64.5
+                                   13   CGLOBAL 01H 03H 0000H "Init_Timer0" 08H 02H 07H 00H 80H 00H 00H 00H 07H
+                                   14   CGLOBAL 01H 03H 0000H "Timer0_Interrupt" 08H 02H 08H 00H 80H 00H 00H 00H 07H
+                                   15   CGLOBAL 01H 03H 0000H "RealTimeClock" 08H 02H 09H 00H 80H 00H 00H 00H 07H
+                                   16   CSTRUCTTAG 0000H 0000H 0001H 0002H 00000002H "flag"
+                                   17   CSTRUCTMEM 52H 00000001H 00000000H "_ScanTime" 02H 00H 01H
+                                   18   CSTRUCTMEM 52H 00000001H 00000001H "_TimerLED" 02H 00H 01H
+                                   19   CSTRUCTTAG 0000H 0000H 0000H 0008H 00000001H "_Notag"
+                                   20   CSTRUCTMEM 52H 00000001H 00000000H "b0" 02H 00H 00H
+                                   21   CSTRUCTMEM 52H 00000001H 00000001H "b1" 02H 00H 00H
+                                   22   CSTRUCTMEM 52H 00000001H 00000002H "b2" 02H 00H 00H
+                                   23   CSTRUCTMEM 52H 00000001H 00000003H "b3" 02H 00H 00H
+                                   24   CSTRUCTMEM 52H 00000001H 00000004H "b4" 02H 00H 00H
+                                   25   CSTRUCTMEM 52H 00000001H 00000005H "b5" 02H 00H 00H
+                                   26   CSTRUCTMEM 52H 00000001H 00000006H "b6" 02H 00H 00H
+                                   27   CSTRUCTMEM 52H 00000001H 00000007H "b7" 02H 00H 00H
+                                   28   CTYPEDEF 0000H 0000H 43H "_BYTE_FIELD" 04H 00H 05H 00H 00H
+                                   29   CGLOBAL 01H 42H 0002H "CountmSec" 02H 00H 01H
+                                   30   CGLOBAL 01H 42H 0002H "counttest" 02H 00H 01H
+                                   31   CGLOBAL 00H 43H 0002H "Flag" 04H 00H 05H 01H 00H
+                                   32   CGLOBAL 01H 42H 0002H "BuzzCount" 02H 00H 01H
+                                   33   CGLOBAL 01H 42H 0001H "Hour" 02H 00H 00H
+                                   34   CGLOBAL 01H 42H 0002H "t_cnt" 02H 00H 01H
+                                   35   CGLOBAL 01H 42H 0001H "Msec" 02H 00H 00H
+                                   36   CGLOBAL 01H 42H 0001H "Min" 02H 00H 00H
+                                   37   CGLOBAL 01H 42H 0001H "Sec" 02H 00H 00H
+                                   38   CFILE 0001H 0000117DH "D:\\U8Dev\\Inc\\ml621367.h"
+                                   39   CFILE 0002H 0000005EH "..\\source files\\wdt.h"
+                                   40   CFILE 0003H 0000004BH "..\\source files\\rdwr_reg.h"
+                                   41   CFILE 0004H 00000009H "..\\source files\\SysDefine.h"
+                                   42   CFILE 0005H 00000012H "..\\source files\\BlinkLED.h"
+                                   43   CFILE 0006H 00000008H "..\\source files\\SysFlag.h"
+                                   44   CFILE 0007H 0000000EH "..\\source files\\time_delay.h"
+                                   45   CFILE 0000H 00000069H "..\\source files\\timer0.c"
+                                   46   
+  --------------------------       47   	rseg $$Init_Timer0$timer0
+                                   48   CFUNCTION 7
+                                   49   
+00:0000                            50   _Init_Timer0	:
+                                   51   CBLOCK 7 1 22
+                                   52   
+                                   53   ;;{
+                                   54   CLINEA 0000H 0001H 0016H 0001H 0001H
+                                   55   CBLOCK 7 2 22
+                                   56   
+                                   57   ;;	TH0CS=1;
+                                   58   CLINEA 0000H 0001H 0029H 0002H 0009H
+00:0000 80-A0 20-F3                59   	sb	0f320h.0
+                                   60   
+                                   61   ;;	TH0EX=0;
+                                   62   CLINEA 0000H 0001H 002AH 0002H 0009H
+00:0004 A2-A0 20-F3                63   	rb	0f320h.2
+                                   64   
+                                   65   ;;	TH0EXS=0;
+                                   66   CLINEA 0000H 0001H 002CH 0002H 000AH
+00:0008 B2-A0 20-F3                67   	rb	0f320h.3
+                                   68   
+                                   69   ;;	TH0DIV2=0;TH0DIV1=0;TH0DIV0=0;
+                                   70   CLINEA 0000H 0001H 002DH 0002H 001FH
+00:000C E2-A0 20-F3                71   	rb	0f320h.6
+00:0010 D2-A0 20-F3                72   	rb	0f320h.5
+00:0014 C2-A0 20-F3                73   	rb	0f320h.4
+                                   74   
+                                   75   ;;	TH08BM = 0;
+                                   76   CLINEA 0000H 0001H 002FH 0002H 000CH
+00:0018 82-A0 21-F3                77   	rb	0f321h.0
+                                   78   
+                                   79   ;;	TH0OST = 0;
+                                   80   CLINEA 0000H 0001H 0030H 0002H 000CH
+00:001C 92-A0 21-F3                81   	rb	0f321h.1
+                                   82   
+                                   83   ;;	TH0NEG = 0;
+                                   84   CLINEA 0000H 0001H 0031H 0002H 000CH
+00:0020 A2-A0 21-F3                85   	rb	0f321h.2
+                                   86   
+                                   87   ;;	TMH0D = 5999;
+                                   88   CLINEA 0000H 0001H 0033H 0002H 000EH
+00:0024 6F 00                      89   	mov	r0,	#06fh
+00:0026 17 01                      90   	mov	r1,	#017h
+00:0028 13-90 00-F3                91   	st	er0,	0f300h
+                                   92   
+                                   93   ;;	ETM0 = 1;      	// Timer 0 interrupt enable
+                                   94   CLINEA 0000H 0001H 0035H 0002H 002CH
+00:002C E0-A0 23-F0                95   	sb	0f023h.6
+                                   96   
+                                   97   ;;	TH0RUN = 1;		// Start Counting
+                                   98   CLINEA 0000H 0001H 0036H 0002H 001FH
+00:0030 80-A0 50-F3                99   	sb	0f350h.0
+                                  100   CBLOCKEND 7 2 55
+                                  101   
+                                  102   ;;}
+                                  103   CLINEA 0000H 0001H 0037H 0001H 0001H
+00:0034 1F-FE                     104   	rt
+                                  105   CBLOCKEND 7 1 55
+                                  106   CFUNCTIONEND 7
+                                  107   
+                                  108   
+  --------------------------      109   	rseg $$Timer0_Interrupt$timer0
+                                  110   CFUNCTION 8
+                                  111   
+00:0000                           112   _Timer0_Interrupt	:
+                                  113   CBLOCK 8 1 60
+                                  114   
+                                  115   ;;{
+                                  116   CLINEA 0000H 0001H 003CH 0001H 0001H
+                                  117   CBLOCK 8 2 60
+                                  118   CSLOCAL 42H 0001H 0000H 0002H "tick_cnt" 02H 00H 00H
+                                  119   CSLOCAL 42H 0002H 0001H 0002H "t_base_cnt" 02H 00H 01H
+                                  120   
+                                  121   ;;	if(++tick_cnt >= 16)	// Count for 250Hz (4000Hz/250Hz = 16)
+                                  122   CLINEA 0000H 0001H 0044H 0002H 003CH
+00:0000 10-90 00-00'              123   	l	r0,	NEAR _$ST0
+00:0004 00 01                     124   	mov	r1,	#00h
+00:0006 81 E0                     125   	add	er0,	#1 
+00:0008 11-90 00-00'              126   	st	r0,	NEAR _$ST0
+00:000C 10 70                     127   	cmp	r0,	#010h
+00:000E 05 C1                     128   	blt	_$L2
+                                  129   CBLOCK 8 3 69
+                                  130   
+                                  131   ;;		tick_cnt = 0;
+                                  132   CLINEA 0000H 0001H 0046H 0003H 000FH
+00:0010 00 00                     133   	mov	r0,	#00h
+00:0012 11-90 00-00'              134   	st	r0,	NEAR _$ST0
+                                  135   
+                                  136   ;;		Flag._ScanTime=1;
+                                  137   CLINEA 0000H 0001H 0047H 0003H 0013H
+00:0016 80-A0'00-00'              138   	sb	NEAR _Flag.0
+                                  139   CBLOCKEND 8 3 72
+                                  140   
+                                  141   ;;	}
+                                  142   CLINEA 0000H 0000H 0048H 0002H 0002H
+00:001A                           143   _$L2 :
+                                  144   
+                                  145   ;;	t_base_cnt++;
+                                  146   CLINEA 0000H 0000H 004CH 0002H 000EH
+00:001A 12-90 00-00'              147   	l	er0,	NEAR _$ST1
+00:001E 81 E0                     148   	add	er0,	#1 
+00:0020 13-90 00-00'              149   	st	er0,	NEAR _$ST1
+                                  150   
+                                  151   ;;	if(t_base_cnt >= (4000))
+                                  152   CLINEA 0000H 0001H 004DH 0002H 0019H
+00:0024 A0 70                     153   	cmp	r0,	#0a0h
+00:0026 0F 51                     154   	cmpc	r1,	#0fh
+00:0028 03 C1                     155   	blt	_$L4
+                                  156   
+                                  157   ;;		t_base_cnt = 0;
+                                  158   CLINEA 0000H 0001H 004FH 0003H 0011H
+00:002A 00 E0                     159   	mov	er0,	#0 
+00:002C 13-90 00-00'              160   	st	er0,	NEAR _$ST1
+00:0030                           161   _$L4 :
+                                  162   CBLOCKEND 8 2 82
+                                  163   
+                                  164   ;;}
+                                  165   CLINEA 0000H 0001H 0052H 0001H 0001H
+00:0030 1F-FE                     166   	rt
+                                  167   CBLOCKEND 8 1 82
+                                  168   CFUNCTIONEND 8
+                                  169   
+                                  170   
+  --------------------------      171   	rseg $$RealTimeClock$timer0
+                                  172   CFUNCTION 9
+                                  173   
+00:0000                           174   _RealTimeClock	:
+                                  175   CBLOCK 9 1 85
+                                  176   
+                                  177   ;;{
+                                  178   CLINEA 0000H 0001H 0055H 0001H 0001H
+                                  179   CBLOCK 9 2 85
+                                  180   
+                                  181   ;;	if(++Msec >= SecCountValue) //SecCountValue = 250
+                                  182   CLINEA 0000H 0001H 0056H 0002H 0032H
+00:0000 10-90 00-00'              183   	l	r0,	NEAR _Msec
+00:0004 00 01                     184   	mov	r1,	#00h
+00:0006 81 E0                     185   	add	er0,	#1 
+00:0008 11-90 00-00'              186   	st	r0,	NEAR _Msec
+00:000C FA 70                     187   	cmp	r0,	#0fah
+00:000E 23 C1                     188   	blt	_$L7
+                                  189   CBLOCK 9 3 87
+                                  190   
+                                  191   ;;		Msec=0;
+                                  192   CLINEA 0000H 0001H 0058H 0003H 0009H
+00:0010 00 00                     193   	mov	r0,	#00h
+00:0012 11-90 00-00'              194   	st	r0,	NEAR _Msec
+                                  195   
+                                  196   ;;		if(++Sec >= 60)
+                                  197   CLINEA 0000H 0001H 0059H 0003H 0011H
+00:0016 10-90 00-00'              198   	l	r0,	NEAR _Sec
+00:001A 00 01                     199   	mov	r1,	#00h
+00:001C 81 E0                     200   	add	er0,	#1 
+00:001E 11-90 00-00'              201   	st	r0,	NEAR _Sec
+00:0022 3C 70                     202   	cmp	r0,	#03ch
+00:0024 18 C1                     203   	blt	_$L9
+                                  204   CBLOCK 9 4 90
+                                  205   
+                                  206   ;;			Sec=0;
+                                  207   CLINEA 0000H 0001H 005BH 0004H 0009H
+00:0026 00 00                     208   	mov	r0,	#00h
+00:0028 11-90 00-00'              209   	st	r0,	NEAR _Sec
+                                  210   
+                                  211   ;;			if(++Min >= 60)
+                                  212   CLINEA 0000H 0001H 005CH 0004H 0012H
+00:002C 10-90 00-00'              213   	l	r0,	NEAR _Min
+00:0030 00 01                     214   	mov	r1,	#00h
+00:0032 81 E0                     215   	add	er0,	#1 
+00:0034 11-90 00-00'              216   	st	r0,	NEAR _Min
+00:0038 3C 70                     217   	cmp	r0,	#03ch
+00:003A 0D C1                     218   	blt	_$L11
+                                  219   CBLOCK 9 5 93
+                                  220   
+                                  221   ;;				Min=0;
+                                  222   CLINEA 0000H 0001H 005EH 0005H 000AH
+00:003C 00 00                     223   	mov	r0,	#00h
+00:003E 11-90 00-00'              224   	st	r0,	NEAR _Min
+                                  225   
+                                  226   ;;				Hour = ++Hour%24;
+                                  227   CLINEA 0000H 0000H 005FH 0005H 0015H
+00:0042 10-90 00-00'              228   	l	r0,	NEAR _Hour
+00:0046 00 01                     229   	mov	r1,	#00h
+00:0048 81 E0                     230   	add	er0,	#1 
+00:004A 00-82                     231   	mov	r2,	r0
+00:004C 00 03                     232   	mov	r3,	#00h
+00:004E 18 00                     233   	mov	r0,	#018h
+00:0050 09-F2                     234   	div	er2,	r0
+00:0052 11-90 00-00'              235   	st	r0,	NEAR _Hour
+                                  236   CBLOCKEND 9 5 96
+                                  237   
+                                  238   ;;			}
+                                  239   CLINEA 0000H 0000H 0060H 0004H 0004H
+00:0056                           240   _$L11 :
+                                  241   CBLOCKEND 9 4 97
+                                  242   
+                                  243   ;;		}
+                                  244   CLINEA 0000H 0000H 0061H 0003H 0003H
+00:0056                           245   _$L9 :
+                                  246   CBLOCKEND 9 3 98
+                                  247   
+                                  248   ;;	} 
+                                  249   CLINEA 0000H 0000H 0062H 0002H 0003H
+00:0056                           250   _$L7 :
+                                  251   CBLOCKEND 9 2 99
+                                  252   
+                                  253   ;;}
+                                  254   CLINEA 0000H 0001H 0063H 0001H 0001H
+00:0056 1F-FE                     255   	rt
+                                  256   CBLOCKEND 9 1 99
+                                  257   CFUNCTIONEND 9
+                                  258   
+                                  259   	public _CountmSec
+                                  260   	public _Init_Timer0
+                                  261   	public _counttest
+                                  262   	public _BuzzCount
+                                  263   	public _Hour
+                                  264   	public _t_cnt
+                                  265   	public _Timer0_Interrupt
+                                  266   	public _Msec
+                                  267   	public _RealTimeClock
+                                  268   	public _Min
+                                  269   	public _Sec
+                                  270   	_Flag comm data 02h #00h
+                                  271   	extrn code near : _main
+                                  272   
+  --------------------------      273   	rseg $$NINITTAB
+??:0000 00                        274   	db	00h
+??:0001 00                        275   	db	00h
+??:0002 00                        276   	db	00h
+??:0003 00                        277   	db	00h
+??:0004 00-00                     278   	dw	00h
+??:0006 00-00                     279   	dw	00h
+??:0008 00-00                     280   	dw	00h
+??:000A 00-00                     281   	dw	00h
+??:000C 00                        282   	db	00h
+??:000D 00                        283   	align
+??:000E 00-00                     284   	dw	00h
+                                  285   
+  --------------------------      286   	rseg $$NINITVAR
+00:0000                           287   _Msec :
+00:0000                           288   	ds	01h
+00:0001                           289   _Sec :
+00:0001                           290   	ds	01h
+00:0002                           291   _Min :
+00:0002                           292   	ds	01h
+00:0003                           293   _Hour :
+00:0003                           294   	ds	01h
+00:0004                           295   _counttest :
+00:0004                           296   	ds	02h
+00:0006                           297   _t_cnt :
+00:0006                           298   	ds	02h
+00:0008                           299   _CountmSec :
+00:0008                           300   	ds	02h
+00:000A                           301   _BuzzCount :
+00:000A                           302   	ds	02h
+00:000C                           303   _$ST0 :
+00:000C                           304   	ds	01h
+00:000D                           305   	align
+00:000E                           306   _$ST1 :
+00:000E                           307   	ds	02h
+                                  308   
+                                  309   	end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 309

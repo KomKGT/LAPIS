@@ -1,0 +1,761 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: source files\irq_template.asm
+ Object File: source files\irq_template.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;; Compile Options : /TML621367 /MS /near /SD /Od /W 1 /Fasource files\ /Zs 
+                                    2   ;; Version Number  : Ver.3.64.5
+                                    3   ;; File Name       : irq_template.c
+                                    4   
+                                    5   	type (ML621367) 
+                                    6   	model small, near
+                                    7   	$$s_handlerCMP0INT$irq_template segment code 2h #0h
+                                    8   	$$s_handlerDMACINT$irq_template segment code 2h #0h
+                                    9   	$$s_handlerEXI0INT$irq_template segment code 2h #0h
+                                   10   	$$s_handlerEXI1INT$irq_template segment code 2h #0h
+                                   11   	$$s_handlerEXI2INT$irq_template segment code 2h #0h
+                                   12   	$$s_handlerEXI3INT$irq_template segment code 2h #0h
+                                   13   	$$s_handlerEXI4INT$irq_template segment code 2h #0h
+                                   14   	$$s_handlerEXI5INT$irq_template segment code 2h #0h
+                                   15   	$$s_handlerEXI6INT$irq_template segment code 2h #0h
+                                   16   	$$s_handlerEXI7INT$irq_template segment code 2h #0h
+                                   17   	$$s_handlerFTM0INT$irq_template segment code 2h #0h
+                                   18   	$$s_handlerFTM1INT$irq_template segment code 2h #0h
+                                   19   	$$s_handlerFTM2INT$irq_template segment code 2h #0h
+                                   20   	$$s_handlerFTM3INT$irq_template segment code 2h #0h
+                                   21   	$$s_handlerI2CM0INT$irq_template segment code 2h #0h
+                                   22   	$$s_handlerI2CU0INT$irq_template segment code 2h #0h
+                                   23   	$$s_handlerLTBC0INT$irq_template segment code 2h #0h
+                                   24   	$$s_handlerLTBC1INT$irq_template segment code 2h #0h
+                                   25   	$$s_handlerLTBC2INT$irq_template segment code 2h #0h
+                                   26   	$$s_handlerSADINT$irq_template segment code 2h #0h
+                                   27   	$$s_handlerSIU00INT$irq_template segment code 2h #0h
+                                   28   	$$s_handlerSIU01INT$irq_template segment code 2h #0h
+                                   29   	$$s_handlerSIU10INT$irq_template segment code 2h #0h
+                                   30   	$$s_handlerSIU11INT$irq_template segment code 2h #0h
+                                   31   	$$s_handlerTM0INT$irq_template segment code 2h #0h
+                                   32   	$$s_handlerTM1INT$irq_template segment code 2h #0h
+                                   33   	$$s_handlerTM2INT$irq_template segment code 2h #0h
+                                   34   	$$s_handlerTM3INT$irq_template segment code 2h #0h
+                                   35   	$$s_handlerTM4INT$irq_template segment code 2h #0h
+                                   36   	$$s_handlerTM5INT$irq_template segment code 2h #0h
+                                   37   	$$s_handlerVLS0INT$irq_template segment code 2h #0h
+                                   38   	$$s_handlerWDTINT$irq_template segment code 2h #0h
+                                   39   CVERSION 3.64.5
+                                   40   CSGLOBAL 03H 0000H "s_handlerLTBC2INT" 08H 02H 1FH 00H 90H 00H 00H 00H 07H
+                                   41   CSGLOBAL 03H 0000H "s_handlerTM1INT" 08H 02H 12H 00H 90H 00H 00H 00H 07H
+                                   42   CSGLOBAL 03H 0000H "s_handlerCMP0INT" 08H 02H 1AH 00H 90H 00H 00H 00H 07H
+                                   43   CSGLOBAL 03H 0000H "s_handlerI2CU0INT" 08H 02H 13H 00H 90H 00H 00H 00H 07H
+                                   44   CSGLOBAL 03H 0000H "s_handlerI2CM0INT" 08H 02H 0EH 00H 90H 00H 00H 00H 07H
+                                   45   CSGLOBAL 03H 0000H "s_handlerTM0INT" 08H 02H 11H 00H 91H 0aH 00H 00H 07H
+                                   46   CSGLOBAL 03H 0000H "s_handlerFTM2INT" 08H 02H 16H 00H 90H 00H 00H 00H 07H
+                                   47   CSGLOBAL 03H 0000H "s_handlerFTM3INT" 08H 02H 17H 00H 90H 00H 00H 00H 07H
+                                   48   CSGLOBAL 03H 0000H "s_handlerVLS0INT" 08H 02H 01H 00H 90H 00H 00H 00H 07H
+                                   49   CSGLOBAL 03H 0000H "s_handlerSADINT" 08H 02H 0DH 00H 90H 00H 00H 00H 07H
+                                   50   CSGLOBAL 03H 0000H "s_handlerTM3INT" 08H 02H 19H 00H 90H 00H 00H 00H 07H
+                                   51   CSGLOBAL 03H 0000H "s_handlerTM2INT" 08H 02H 18H 00H 90H 00H 00H 00H 07H
+                                   52   CSGLOBAL 03H 0000H "s_handlerEXI4INT" 08H 02H 06H 00H 90H 00H 00H 00H 07H
+                                   53   CSGLOBAL 03H 0000H "s_handlerEXI5INT" 08H 02H 07H 00H 90H 00H 00H 00H 07H
+                                   54   CSGLOBAL 03H 0000H "s_handlerSIU01INT" 08H 02H 0CH 00H 90H 00H 00H 00H 07H
+                                   55   CSGLOBAL 03H 0000H "s_handlerEXI0INT" 08H 02H 02H 00H 90H 00H 00H 00H 07H
+                                   56   CSGLOBAL 03H 0000H "s_handlerSIU00INT" 08H 02H 0BH 00H 90H 00H 00H 00H 07H
+                                   57   CSGLOBAL 03H 0000H "s_handlerEXI1INT" 08H 02H 03H 00H 90H 00H 00H 00H 07H
+                                   58   CSGLOBAL 03H 0000H "s_handlerEXI6INT" 08H 02H 08H 00H 90H 00H 00H 00H 07H
+                                   59   CSGLOBAL 03H 0000H "s_handlerEXI7INT" 08H 02H 09H 00H 90H 00H 00H 00H 07H
+                                   60   CSGLOBAL 03H 0000H "s_handlerSIU11INT" 08H 02H 15H 00H 90H 00H 00H 00H 07H
+                                   61   CSGLOBAL 03H 0000H "s_handlerWDTINT" 08H 02H 00H 00H 90H 04H 00H 00H 07H
+                                   62   CSGLOBAL 03H 0000H "s_handlerSIU10INT" 08H 02H 14H 00H 90H 00H 00H 00H 07H
+                                   63   CSGLOBAL 03H 0000H "s_handlerEXI2INT" 08H 02H 04H 00H 90H 00H 00H 00H 07H
+                                   64   CSGLOBAL 03H 0000H "s_handlerDMACINT" 08H 02H 0AH 00H 90H 00H 00H 00H 07H
+                                   65   CSGLOBAL 03H 0000H "s_handlerEXI3INT" 08H 02H 05H 00H 90H 00H 00H 00H 07H
+                                   66   CSGLOBAL 03H 0000H "s_handlerTM5INT" 08H 02H 1CH 00H 90H 00H 00H 00H 07H
+                                   67   CSGLOBAL 03H 0000H "s_handlerTM4INT" 08H 02H 1BH 00H 90H 00H 00H 00H 07H
+                                   68   CSGLOBAL 03H 0000H "s_handlerLTBC0INT" 08H 02H 1DH 00H 90H 00H 00H 00H 07H
+                                   69   CSGLOBAL 03H 0000H "s_handlerLTBC1INT" 08H 02H 1EH 00H 90H 00H 00H 00H 07H
+                                   70   CSGLOBAL 03H 0000H "s_handlerFTM0INT" 08H 02H 0FH 00H 90H 00H 00H 00H 07H
+                                   71   CSGLOBAL 03H 0000H "s_handlerFTM1INT" 08H 02H 10H 00H 90H 00H 00H 00H 07H
+                                   72   CSTRUCTTAG 0000H 0000H 0000H 0008H 00000001H "_Notag"
+                                   73   CSTRUCTMEM 52H 00000001H 00000000H "b0" 02H 00H 00H
+                                   74   CSTRUCTMEM 52H 00000001H 00000001H "b1" 02H 00H 00H
+                                   75   CSTRUCTMEM 52H 00000001H 00000002H "b2" 02H 00H 00H
+                                   76   CSTRUCTMEM 52H 00000001H 00000003H "b3" 02H 00H 00H
+                                   77   CSTRUCTMEM 52H 00000001H 00000004H "b4" 02H 00H 00H
+                                   78   CSTRUCTMEM 52H 00000001H 00000005H "b5" 02H 00H 00H
+                                   79   CSTRUCTMEM 52H 00000001H 00000006H "b6" 02H 00H 00H
+                                   80   CSTRUCTMEM 52H 00000001H 00000007H "b7" 02H 00H 00H
+                                   81   CTYPEDEF 0000H 0000H 43H "_BYTE_FIELD" 04H 00H 05H 00H 00H
+                                   82   CFILE 0001H 0000117DH "D:\\U8Dev\\Inc\\ml621367.h"
+                                   83   CFILE 0002H 00000360H "..\\source files\\irq.h"
+                                   84   CFILE 0003H 0000004BH "..\\source files\\rdwr_reg.h"
+                                   85   CFILE 0000H 000001ABH "..\\source files\\irq_template.c"
+                                   86   
+  --------------------------       87   	rseg $$s_handlerWDTINT$irq_template
+                                   88   CFUNCTION 0
+                                   89   
+00:0000                            90   _s_handlerWDTINT	:
+                                   91   CBLOCK 0 1 156
+                                   92   
+                                   93   ;;{
+                                   94   CLINEA 0000H 0001H 009CH 0001H 0001H
+00:0000 CE-F6                      95   	push	elr, epsw
+                                   96   CBLOCK 0 2 156
+                                   97   CRET 0002H
+                                   98   CBLOCKEND 0 2 160
+                                   99   
+                                  100   ;;}
+                                  101   CLINEA 0000H 0001H 00A0H 0001H 0001H
+00:0002 8E-F6                     102   	pop	psw, pc
+                                  103   CBLOCKEND 0 1 160
+                                  104   CFUNCTIONEND 0
+                                  105   
+                                  106   
+  --------------------------      107   	rseg $$s_handlerVLS0INT$irq_template
+                                  108   CFUNCTION 1
+                                  109   
+00:0000                           110   _s_handlerVLS0INT	:
+                                  111   CBLOCK 1 1 163
+                                  112   
+                                  113   ;;{
+                                  114   CLINEA 0000H 0001H 00A3H 0001H 0001H
+                                  115   CBLOCK 1 2 163
+                                  116   CBLOCKEND 1 2 167
+                                  117   
+                                  118   ;;}
+                                  119   CLINEA 0000H 0001H 00A7H 0001H 0001H
+00:0000 0F-FE                     120   	rti
+                                  121   CBLOCKEND 1 1 167
+                                  122   CFUNCTIONEND 1
+                                  123   
+                                  124   
+  --------------------------      125   	rseg $$s_handlerEXI0INT$irq_template
+                                  126   CFUNCTION 2
+                                  127   
+00:0000                           128   _s_handlerEXI0INT	:
+                                  129   CBLOCK 2 1 170
+                                  130   
+                                  131   ;;{
+                                  132   CLINEA 0000H 0001H 00AAH 0001H 0001H
+                                  133   CBLOCK 2 2 170
+                                  134   CBLOCKEND 2 2 174
+                                  135   
+                                  136   ;;}
+                                  137   CLINEA 0000H 0001H 00AEH 0001H 0001H
+00:0000 0F-FE                     138   	rti
+                                  139   CBLOCKEND 2 1 174
+                                  140   CFUNCTIONEND 2
+                                  141   
+                                  142   
+  --------------------------      143   	rseg $$s_handlerEXI1INT$irq_template
+                                  144   CFUNCTION 3
+                                  145   
+00:0000                           146   _s_handlerEXI1INT	:
+                                  147   CBLOCK 3 1 177
+                                  148   
+                                  149   ;;{
+                                  150   CLINEA 0000H 0001H 00B1H 0001H 0001H
+                                  151   CBLOCK 3 2 177
+                                  152   CBLOCKEND 3 2 181
+                                  153   
+                                  154   ;;}
+                                  155   CLINEA 0000H 0001H 00B5H 0001H 0001H
+00:0000 0F-FE                     156   	rti
+                                  157   CBLOCKEND 3 1 181
+                                  158   CFUNCTIONEND 3
+                                  159   
+                                  160   
+  --------------------------      161   	rseg $$s_handlerEXI2INT$irq_template
+                                  162   CFUNCTION 4
+                                  163   
+00:0000                           164   _s_handlerEXI2INT	:
+                                  165   CBLOCK 4 1 184
+                                  166   
+                                  167   ;;{
+                                  168   CLINEA 0000H 0001H 00B8H 0001H 0001H
+                                  169   CBLOCK 4 2 184
+                                  170   CBLOCKEND 4 2 188
+                                  171   
+                                  172   ;;}
+                                  173   CLINEA 0000H 0001H 00BCH 0001H 0001H
+00:0000 0F-FE                     174   	rti
+                                  175   CBLOCKEND 4 1 188
+                                  176   CFUNCTIONEND 4
+                                  177   
+                                  178   
+  --------------------------      179   	rseg $$s_handlerEXI3INT$irq_template
+                                  180   CFUNCTION 5
+                                  181   
+00:0000                           182   _s_handlerEXI3INT	:
+                                  183   CBLOCK 5 1 191
+                                  184   
+                                  185   ;;{
+                                  186   CLINEA 0000H 0001H 00BFH 0001H 0001H
+                                  187   CBLOCK 5 2 191
+                                  188   CBLOCKEND 5 2 195
+                                  189   
+                                  190   ;;}
+                                  191   CLINEA 0000H 0001H 00C3H 0001H 0001H
+00:0000 0F-FE                     192   	rti
+                                  193   CBLOCKEND 5 1 195
+                                  194   CFUNCTIONEND 5
+                                  195   
+                                  196   
+  --------------------------      197   	rseg $$s_handlerEXI4INT$irq_template
+                                  198   CFUNCTION 6
+                                  199   
+00:0000                           200   _s_handlerEXI4INT	:
+                                  201   CBLOCK 6 1 198
+                                  202   
+                                  203   ;;{
+                                  204   CLINEA 0000H 0001H 00C6H 0001H 0001H
+                                  205   CBLOCK 6 2 198
+                                  206   CBLOCKEND 6 2 202
+                                  207   
+                                  208   ;;}
+                                  209   CLINEA 0000H 0001H 00CAH 0001H 0001H
+00:0000 0F-FE                     210   	rti
+                                  211   CBLOCKEND 6 1 202
+                                  212   CFUNCTIONEND 6
+                                  213   
+                                  214   
+  --------------------------      215   	rseg $$s_handlerEXI5INT$irq_template
+                                  216   CFUNCTION 7
+                                  217   
+00:0000                           218   _s_handlerEXI5INT	:
+                                  219   CBLOCK 7 1 205
+                                  220   
+                                  221   ;;{
+                                  222   CLINEA 0000H 0001H 00CDH 0001H 0001H
+                                  223   CBLOCK 7 2 205
+                                  224   CBLOCKEND 7 2 209
+                                  225   
+                                  226   ;;}
+                                  227   CLINEA 0000H 0001H 00D1H 0001H 0001H
+00:0000 0F-FE                     228   	rti
+                                  229   CBLOCKEND 7 1 209
+                                  230   CFUNCTIONEND 7
+                                  231   
+                                  232   
+  --------------------------      233   	rseg $$s_handlerEXI6INT$irq_template
+                                  234   CFUNCTION 8
+                                  235   
+00:0000                           236   _s_handlerEXI6INT	:
+                                  237   CBLOCK 8 1 212
+                                  238   
+                                  239   ;;{
+                                  240   CLINEA 0000H 0001H 00D4H 0001H 0001H
+                                  241   CBLOCK 8 2 212
+                                  242   CBLOCKEND 8 2 216
+                                  243   
+                                  244   ;;}
+                                  245   CLINEA 0000H 0001H 00D8H 0001H 0001H
+00:0000 0F-FE                     246   	rti
+                                  247   CBLOCKEND 8 1 216
+                                  248   CFUNCTIONEND 8
+                                  249   
+                                  250   
+  --------------------------      251   	rseg $$s_handlerEXI7INT$irq_template
+                                  252   CFUNCTION 9
+                                  253   
+00:0000                           254   _s_handlerEXI7INT	:
+                                  255   CBLOCK 9 1 219
+                                  256   
+                                  257   ;;{
+                                  258   CLINEA 0000H 0001H 00DBH 0001H 0001H
+                                  259   CBLOCK 9 2 219
+                                  260   CBLOCKEND 9 2 223
+                                  261   
+                                  262   ;;}
+                                  263   CLINEA 0000H 0001H 00DFH 0001H 0001H
+00:0000 0F-FE                     264   	rti
+                                  265   CBLOCKEND 9 1 223
+                                  266   CFUNCTIONEND 9
+                                  267   
+                                  268   
+  --------------------------      269   	rseg $$s_handlerDMACINT$irq_template
+                                  270   CFUNCTION 10
+                                  271   
+00:0000                           272   _s_handlerDMACINT	:
+                                  273   CBLOCK 10 1 226
+                                  274   
+                                  275   ;;{
+                                  276   CLINEA 0000H 0001H 00E2H 0001H 0001H
+                                  277   CBLOCK 10 2 226
+                                  278   CBLOCKEND 10 2 230
+                                  279   
+                                  280   ;;}
+                                  281   CLINEA 0000H 0001H 00E6H 0001H 0001H
+00:0000 0F-FE                     282   	rti
+                                  283   CBLOCKEND 10 1 230
+                                  284   CFUNCTIONEND 10
+                                  285   
+                                  286   
+  --------------------------      287   	rseg $$s_handlerSIU00INT$irq_template
+                                  288   CFUNCTION 11
+                                  289   
+00:0000                           290   _s_handlerSIU00INT	:
+                                  291   CBLOCK 11 1 233
+                                  292   
+                                  293   ;;{
+                                  294   CLINEA 0000H 0001H 00E9H 0001H 0001H
+                                  295   CBLOCK 11 2 233
+                                  296   CBLOCKEND 11 2 237
+                                  297   
+                                  298   ;;}
+                                  299   CLINEA 0000H 0001H 00EDH 0001H 0001H
+00:0000 0F-FE                     300   	rti
+                                  301   CBLOCKEND 11 1 237
+                                  302   CFUNCTIONEND 11
+                                  303   
+                                  304   
+  --------------------------      305   	rseg $$s_handlerSIU01INT$irq_template
+                                  306   CFUNCTION 12
+                                  307   
+00:0000                           308   _s_handlerSIU01INT	:
+                                  309   CBLOCK 12 1 240
+                                  310   
+                                  311   ;;{
+                                  312   CLINEA 0000H 0001H 00F0H 0001H 0001H
+                                  313   CBLOCK 12 2 240
+                                  314   CBLOCKEND 12 2 244
+                                  315   
+                                  316   ;;}
+                                  317   CLINEA 0000H 0001H 00F4H 0001H 0001H
+00:0000 0F-FE                     318   	rti
+                                  319   CBLOCKEND 12 1 244
+                                  320   CFUNCTIONEND 12
+                                  321   
+                                  322   
+  --------------------------      323   	rseg $$s_handlerSADINT$irq_template
+                                  324   CFUNCTION 13
+                                  325   
+00:0000                           326   _s_handlerSADINT	:
+                                  327   CBLOCK 13 1 247
+                                  328   
+                                  329   ;;{
+                                  330   CLINEA 0000H 0001H 00F7H 0001H 0001H
+                                  331   CBLOCK 13 2 247
+                                  332   CBLOCKEND 13 2 251
+                                  333   
+                                  334   ;;}
+                                  335   CLINEA 0000H 0001H 00FBH 0001H 0001H
+00:0000 0F-FE                     336   	rti
+                                  337   CBLOCKEND 13 1 251
+                                  338   CFUNCTIONEND 13
+                                  339   
+                                  340   
+  --------------------------      341   	rseg $$s_handlerI2CM0INT$irq_template
+                                  342   CFUNCTION 14
+                                  343   
+00:0000                           344   _s_handlerI2CM0INT	:
+                                  345   CBLOCK 14 1 254
+                                  346   
+                                  347   ;;{
+                                  348   CLINEA 0000H 0001H 00FEH 0001H 0001H
+                                  349   CBLOCK 14 2 254
+                                  350   CBLOCKEND 14 2 258
+                                  351   
+                                  352   ;;}
+                                  353   CLINEA 0000H 0001H 0102H 0001H 0001H
+00:0000 0F-FE                     354   	rti
+                                  355   CBLOCKEND 14 1 258
+                                  356   CFUNCTIONEND 14
+                                  357   
+                                  358   
+  --------------------------      359   	rseg $$s_handlerFTM0INT$irq_template
+                                  360   CFUNCTION 15
+                                  361   
+00:0000                           362   _s_handlerFTM0INT	:
+                                  363   CBLOCK 15 1 269
+                                  364   
+                                  365   ;;{
+                                  366   CLINEA 0000H 0001H 010DH 0001H 0001H
+                                  367   CBLOCK 15 2 269
+                                  368   CBLOCKEND 15 2 273
+                                  369   
+                                  370   ;;}
+                                  371   CLINEA 0000H 0001H 0111H 0001H 0001H
+00:0000 0F-FE                     372   	rti
+                                  373   CBLOCKEND 15 1 273
+                                  374   CFUNCTIONEND 15
+                                  375   
+                                  376   
+  --------------------------      377   	rseg $$s_handlerFTM1INT$irq_template
+                                  378   CFUNCTION 16
+                                  379   
+00:0000                           380   _s_handlerFTM1INT	:
+                                  381   CBLOCK 16 1 276
+                                  382   
+                                  383   ;;{
+                                  384   CLINEA 0000H 0001H 0114H 0001H 0001H
+                                  385   CBLOCK 16 2 276
+                                  386   CBLOCKEND 16 2 280
+                                  387   
+                                  388   ;;}
+                                  389   CLINEA 0000H 0001H 0118H 0001H 0001H
+00:0000 0F-FE                     390   	rti
+                                  391   CBLOCKEND 16 1 280
+                                  392   CFUNCTIONEND 16
+                                  393   
+                                  394   
+  --------------------------      395   	rseg $$s_handlerTM0INT$irq_template
+                                  396   CFUNCTION 17
+                                  397   
+00:0000                           398   _s_handlerTM0INT	:
+                                  399   CBLOCK 17 1 283
+                                  400   
+                                  401   ;;{
+                                  402   CLINEA 0000H 0001H 011BH 0001H 0001H
+00:0000 CE-F9                     403   	push	lr, ea
+00:0002 6E-F0                     404   	push	xr0
+00:0004 10-90 00-F0               405   	l	r0,	DSR
+00:0008 4E-F0                     406   	push	r0
+                                  407   CBLOCK 17 2 283
+                                  408   
+                                  409   ;;	Timer0_Interrupt();
+                                  410   CLINEA 0000H 0001H 011CH 0002H 0014H
+00:000A 01-F0'00-00'              411   	bl	_Timer0_Interrupt
+                                  412   
+                                  413   ;;	CIL =0;
+                                  414   CLINEA 0000H 0001H 011DH 0002H 0008H
+00:000E 00 00                     415   	mov	r0,	#00h
+00:0010 11-90 32-F0               416   	st	r0,	0f032h
+                                  417   CBLOCKEND 17 2 286
+                                  418   
+                                  419   ;;}
+                                  420   CLINEA 0000H 0001H 011EH 0001H 0001H
+00:0014 0E-F0                     421   	pop	r0
+00:0016 11-90 00-F0               422   	st	r0,	DSR
+00:001A 2E-F0                     423   	pop	xr0
+00:001C 8E-F9                     424   	pop	ea, lr
+00:001E 0F-FE                     425   	rti
+                                  426   CBLOCKEND 17 1 286
+                                  427   CFUNCTIONEND 17
+                                  428   
+                                  429   
+  --------------------------      430   	rseg $$s_handlerTM1INT$irq_template
+                                  431   CFUNCTION 18
+                                  432   
+00:0000                           433   _s_handlerTM1INT	:
+                                  434   CBLOCK 18 1 289
+                                  435   
+                                  436   ;;{
+                                  437   CLINEA 0000H 0001H 0121H 0001H 0001H
+                                  438   CBLOCK 18 2 289
+                                  439   CBLOCKEND 18 2 293
+                                  440   
+                                  441   ;;}
+                                  442   CLINEA 0000H 0001H 0125H 0001H 0001H
+00:0000 0F-FE                     443   	rti
+                                  444   CBLOCKEND 18 1 293
+                                  445   CFUNCTIONEND 18
+                                  446   
+                                  447   
+  --------------------------      448   	rseg $$s_handlerI2CU0INT$irq_template
+                                  449   CFUNCTION 19
+                                  450   
+00:0000                           451   _s_handlerI2CU0INT	:
+                                  452   CBLOCK 19 1 296
+                                  453   
+                                  454   ;;{
+                                  455   CLINEA 0000H 0001H 0128H 0001H 0001H
+                                  456   CBLOCK 19 2 296
+                                  457   CBLOCKEND 19 2 300
+                                  458   
+                                  459   ;;}
+                                  460   CLINEA 0000H 0001H 012CH 0001H 0001H
+00:0000 0F-FE                     461   	rti
+                                  462   CBLOCKEND 19 1 300
+                                  463   CFUNCTIONEND 19
+                                  464   
+                                  465   
+  --------------------------      466   	rseg $$s_handlerSIU10INT$irq_template
+                                  467   CFUNCTION 20
+                                  468   
+00:0000                           469   _s_handlerSIU10INT	:
+                                  470   CBLOCK 20 1 303
+                                  471   
+                                  472   ;;{
+                                  473   CLINEA 0000H 0001H 012FH 0001H 0001H
+                                  474   CBLOCK 20 2 303
+                                  475   CBLOCKEND 20 2 307
+                                  476   
+                                  477   ;;}
+                                  478   CLINEA 0000H 0001H 0133H 0001H 0001H
+00:0000 0F-FE                     479   	rti
+                                  480   CBLOCKEND 20 1 307
+                                  481   CFUNCTIONEND 20
+                                  482   
+                                  483   
+  --------------------------      484   	rseg $$s_handlerSIU11INT$irq_template
+                                  485   CFUNCTION 21
+                                  486   
+00:0000                           487   _s_handlerSIU11INT	:
+                                  488   CBLOCK 21 1 310
+                                  489   
+                                  490   ;;{
+                                  491   CLINEA 0000H 0001H 0136H 0001H 0001H
+                                  492   CBLOCK 21 2 310
+                                  493   CBLOCKEND 21 2 314
+                                  494   
+                                  495   ;;}
+                                  496   CLINEA 0000H 0001H 013AH 0001H 0001H
+00:0000 0F-FE                     497   	rti
+                                  498   CBLOCKEND 21 1 314
+                                  499   CFUNCTIONEND 21
+                                  500   
+                                  501   
+  --------------------------      502   	rseg $$s_handlerFTM2INT$irq_template
+                                  503   CFUNCTION 22
+                                  504   
+00:0000                           505   _s_handlerFTM2INT	:
+                                  506   CBLOCK 22 1 317
+                                  507   
+                                  508   ;;{
+                                  509   CLINEA 0000H 0001H 013DH 0001H 0001H
+                                  510   CBLOCK 22 2 317
+                                  511   CBLOCKEND 22 2 321
+                                  512   
+                                  513   ;;}
+                                  514   CLINEA 0000H 0001H 0141H 0001H 0001H
+00:0000 0F-FE                     515   	rti
+                                  516   CBLOCKEND 22 1 321
+                                  517   CFUNCTIONEND 22
+                                  518   
+                                  519   
+  --------------------------      520   	rseg $$s_handlerFTM3INT$irq_template
+                                  521   CFUNCTION 23
+                                  522   
+00:0000                           523   _s_handlerFTM3INT	:
+                                  524   CBLOCK 23 1 324
+                                  525   
+                                  526   ;;{
+                                  527   CLINEA 0000H 0001H 0144H 0001H 0001H
+                                  528   CBLOCK 23 2 324
+                                  529   CBLOCKEND 23 2 328
+                                  530   
+                                  531   ;;}
+                                  532   CLINEA 0000H 0001H 0148H 0001H 0001H
+00:0000 0F-FE                     533   	rti
+                                  534   CBLOCKEND 23 1 328
+                                  535   CFUNCTIONEND 23
+                                  536   
+                                  537   
+  --------------------------      538   	rseg $$s_handlerTM2INT$irq_template
+                                  539   CFUNCTION 24
+                                  540   
+00:0000                           541   _s_handlerTM2INT	:
+                                  542   CBLOCK 24 1 331
+                                  543   
+                                  544   ;;{
+                                  545   CLINEA 0000H 0001H 014BH 0001H 0001H
+                                  546   CBLOCK 24 2 331
+                                  547   CBLOCKEND 24 2 335
+                                  548   
+                                  549   ;;}
+                                  550   CLINEA 0000H 0001H 014FH 0001H 0001H
+00:0000 0F-FE                     551   	rti
+                                  552   CBLOCKEND 24 1 335
+                                  553   CFUNCTIONEND 24
+                                  554   
+                                  555   
+  --------------------------      556   	rseg $$s_handlerTM3INT$irq_template
+                                  557   CFUNCTION 25
+                                  558   
+00:0000                           559   _s_handlerTM3INT	:
+                                  560   CBLOCK 25 1 338
+                                  561   
+                                  562   ;;{
+                                  563   CLINEA 0000H 0001H 0152H 0001H 0001H
+                                  564   CBLOCK 25 2 338
+                                  565   CBLOCKEND 25 2 342
+                                  566   
+                                  567   ;;}
+                                  568   CLINEA 0000H 0001H 0156H 0001H 0001H
+00:0000 0F-FE                     569   	rti
+                                  570   CBLOCKEND 25 1 342
+                                  571   CFUNCTIONEND 25
+                                  572   
+                                  573   
+  --------------------------      574   	rseg $$s_handlerCMP0INT$irq_template
+                                  575   CFUNCTION 26
+                                  576   
+00:0000                           577   _s_handlerCMP0INT	:
+                                  578   CBLOCK 26 1 345
+                                  579   
+                                  580   ;;{
+                                  581   CLINEA 0000H 0001H 0159H 0001H 0001H
+                                  582   CBLOCK 26 2 345
+                                  583   CBLOCKEND 26 2 349
+                                  584   
+                                  585   ;;}
+                                  586   CLINEA 0000H 0001H 015DH 0001H 0001H
+00:0000 0F-FE                     587   	rti
+                                  588   CBLOCKEND 26 1 349
+                                  589   CFUNCTIONEND 26
+                                  590   
+                                  591   
+  --------------------------      592   	rseg $$s_handlerTM4INT$irq_template
+                                  593   CFUNCTION 27
+                                  594   
+00:0000                           595   _s_handlerTM4INT	:
+                                  596   CBLOCK 27 1 361
+                                  597   
+                                  598   ;;    {
+                                  599   CLINEA 0000H 0001H 0169H 0005H 0005H
+                                  600   CBLOCK 27 2 361
+                                  601   CBLOCKEND 27 2 365
+                                  602   
+                                  603   ;;    }
+                                  604   CLINEA 0000H 0001H 016DH 0005H 0005H
+00:0000 0F-FE                     605   	rti
+                                  606   CBLOCKEND 27 1 365
+                                  607   CFUNCTIONEND 27
+                                  608   
+                                  609   
+  --------------------------      610   	rseg $$s_handlerTM5INT$irq_template
+                                  611   CFUNCTION 28
+                                  612   
+00:0000                           613   _s_handlerTM5INT	:
+                                  614   CBLOCK 28 1 368
+                                  615   
+                                  616   ;;    {
+                                  617   CLINEA 0000H 0001H 0170H 0005H 0005H
+                                  618   CBLOCK 28 2 368
+                                  619   CBLOCKEND 28 2 372
+                                  620   
+                                  621   ;;    }
+                                  622   CLINEA 0000H 0001H 0174H 0005H 0005H
+00:0000 0F-FE                     623   	rti
+                                  624   CBLOCKEND 28 1 372
+                                  625   CFUNCTIONEND 28
+                                  626   
+                                  627   
+  --------------------------      628   	rseg $$s_handlerLTBC0INT$irq_template
+                                  629   CFUNCTION 29
+                                  630   
+00:0000                           631   _s_handlerLTBC0INT	:
+                                  632   CBLOCK 29 1 391
+                                  633   
+                                  634   ;;{
+                                  635   CLINEA 0000H 0001H 0187H 0001H 0001H
+                                  636   CBLOCK 29 2 391
+                                  637   CBLOCKEND 29 2 395
+                                  638   
+                                  639   ;;}
+                                  640   CLINEA 0000H 0001H 018BH 0001H 0001H
+00:0000 0F-FE                     641   	rti
+                                  642   CBLOCKEND 29 1 395
+                                  643   CFUNCTIONEND 29
+                                  644   
+                                  645   
+  --------------------------      646   	rseg $$s_handlerLTBC1INT$irq_template
+                                  647   CFUNCTION 30
+                                  648   
+00:0000                           649   _s_handlerLTBC1INT	:
+                                  650   CBLOCK 30 1 398
+                                  651   
+                                  652   ;;{
+                                  653   CLINEA 0000H 0001H 018EH 0001H 0001H
+                                  654   CBLOCK 30 2 398
+                                  655   CBLOCKEND 30 2 402
+                                  656   
+                                  657   ;;}
+                                  658   CLINEA 0000H 0001H 0192H 0001H 0001H
+00:0000 0F-FE                     659   	rti
+                                  660   CBLOCKEND 30 1 402
+                                  661   CFUNCTIONEND 30
+                                  662   
+                                  663   
+  --------------------------      664   	rseg $$s_handlerLTBC2INT$irq_template
+                                  665   CFUNCTION 31
+                                  666   
+00:0000                           667   _s_handlerLTBC2INT	:
+                                  668   CBLOCK 31 1 405
+                                  669   
+                                  670   ;;{
+                                  671   CLINEA 0000H 0001H 0195H 0001H 0001H
+                                  672   CBLOCK 31 2 405
+                                  673   CBLOCKEND 31 2 409
+                                  674   
+                                  675   ;;}
+                                  676   CLINEA 0000H 0001H 0199H 0001H 0001H
+00:0000 0F-FE                     677   	rti
+                                  678   CBLOCKEND 31 1 409
+                                  679   CFUNCTIONEND 31
+                                  680   
+                                  681   	extrn code near : _Timer0_Interrupt
+                                  682   	extrn code near : _main
+                                  683   
+  --------------------------      684   	cseg #00h at 08h
+00:0008 00-00'                    685   	dw	_s_handlerWDTINT
+                                  686   
+  --------------------------      687   	cseg #00h at 0Ch
+00:000C 00-00'                    688   	dw	_s_handlerVLS0INT
+                                  689   
+  --------------------------      690   	cseg #00h at 010h
+00:0010 00-00'                    691   	dw	_s_handlerEXI0INT
+00:0012 00-00'                    692   	dw	_s_handlerEXI1INT
+00:0014 00-00'                    693   	dw	_s_handlerEXI2INT
+00:0016 00-00'                    694   	dw	_s_handlerEXI3INT
+00:0018 00-00'                    695   	dw	_s_handlerEXI4INT
+00:001A 00-00'                    696   	dw	_s_handlerEXI5INT
+00:001C 00-00'                    697   	dw	_s_handlerEXI6INT
+00:001E 00-00'                    698   	dw	_s_handlerEXI7INT
+                                  699   
+  --------------------------      700   	cseg #00h at 022h
+00:0022 00-00'                    701   	dw	_s_handlerDMACINT
+                                  702   
+  --------------------------      703   	cseg #00h at 026h
+00:0026 00-00'                    704   	dw	_s_handlerSIU00INT
+00:0028 00-00'                    705   	dw	_s_handlerSIU01INT
+                                  706   
+  --------------------------      707   	cseg #00h at 02Ch
+00:002C 00-00'                    708   	dw	_s_handlerSADINT
+                                  709   
+  --------------------------      710   	cseg #00h at 034h
+00:0034 00-00'                    711   	dw	_s_handlerI2CM0INT
+                                  712   
+  --------------------------      713   	cseg #00h at 038h
+00:0038 00-00'                    714   	dw	_s_handlerFTM0INT
+00:003A 00-00'                    715   	dw	_s_handlerFTM1INT
+00:003C 00-00'                    716   	dw	_s_handlerTM0INT
+00:003E 00-00'                    717   	dw	_s_handlerTM1INT
+00:0040 00-00'                    718   	dw	_s_handlerI2CU0INT
+00:0042 00-00'                    719   	dw	_s_handlerSIU10INT
+00:0044 00-00'                    720   	dw	_s_handlerSIU11INT
+                                  721   
+  --------------------------      722   	cseg #00h at 048h
+00:0048 00-00'                    723   	dw	_s_handlerFTM2INT
+00:004A 00-00'                    724   	dw	_s_handlerFTM3INT
+00:004C 00-00'                    725   	dw	_s_handlerTM2INT
+00:004E 00-00'                    726   	dw	_s_handlerTM3INT
+                                  727   
+  --------------------------      728   	cseg #00h at 054h
+00:0054 00-00'                    729   	dw	_s_handlerCMP0INT
+                                  730   
+  --------------------------      731   	cseg #00h at 05Ch
+00:005C 00-00'                    732   	dw	_s_handlerTM4INT
+00:005E 00-00'                    733   	dw	_s_handlerTM5INT
+                                  734   
+  --------------------------      735   	cseg #00h at 074h
+00:0074 00-00'                    736   	dw	_s_handlerLTBC0INT
+                                  737   
+  --------------------------      738   	cseg #00h at 078h
+00:0078 00-00'                    739   	dw	_s_handlerLTBC1INT
+00:007A 00-00'                    740   	dw	_s_handlerLTBC2INT
+                                  741   
+                                  742   	end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 742

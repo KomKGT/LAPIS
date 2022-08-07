@@ -1,0 +1,320 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: ..\ML621367.ASM
+ Object File: .\ML621367.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;***************************************************************
+                                    2   ;       ML621367 start up assembly source file
+                                    3   ;       for CCU8 version 1.xx/2.xx/3.xx
+                                    4   ;       SMALL CODE MODEL
+                                    5   ;       ROMWINDOW  00000H-0DFFFH
+                                    6   ;       Version 1.01
+                                    7   ;       Last Edition  Jul 25, 2019
+                                    8   ;       Copyright (C) 2019 LAPIS Semiconductor Co., Ltd.
+                                    9   ;       U8/U16 Device Information Files V2.00
+                                   10   ;***************************************************************
+                                   11   
+                                   12           type(ML621367)
+                                   13   
+                                   14           model   small
+                                   15           romwindow       0, 0dfffh
+                                   16   
+                                   17           extrn   code: _main
+                                   18           extrn   data near: _$$SP
+                                   19           public  $$start_up
+                                   20   
+  --------------------------       21           cseg    at 0:0h
+00:0000 00-00'                     22           dw      offset _$$SP
+                                   23   
+  --------------------------       24           cseg    at 0:4h
+00:0004 00-00'                     25           dw      $$brk_reset
+                                   26   
+  --------------------------       27           cseg    at 0:6h
+00:0006 FF-FF                      28           dw      0ffffh
+                                   29   
+                                   30   
+                                   31   $$NCODml621367sw segment code #0
+  --------------------------       32           rseg    $$NCODml621367sw
+                                   33   
+00:0000                            34   $$start_up:
+00:0000 F1-A0 58-F0                35           tb      INITE
+00:0004 0E C9                      36           bz      $begin
+                                   37   
+00:0006                            38   $$brk_reset:
+00:0006                            39   $$error:
+00:0006 00 00                      40           mov     r0,     #00h
+00:0008 11-90 12-F0                41           st      r0,     WDTMOD
+00:000C 02 E9                      42           mov     psw,    #02h
+                                   43     ;-----------------------------------------------------
+                                   44     ;     reset SFRs
+                                   45     ;     If you don't need the below then remove it.
+                                   46     ;
+00:000E 7F E0                      47           mov     er0,    #-1
+00:0010 13-90 78-F0                48           st      er0,    BRECON0
+00:0014 13-90 7A-F0                49           st      er0,    BRECON1
+00:0018 13-90 7C-F0                50           st      er0,    BRECON2
+00:001C 13-90 7E-F0                51           st      er0,    BRECON3
+                                   52     ;-----------------------------------------------------
+00:0020 FF CE                      53           bal     $               ; wait for Watch Dog Timer reset
+                                   54   
+00:0022                            55   $begin:
+                                   56   
+                                   57   ;---------------------------------------------------------------
+                                   58   ;       setting Memory Model
+                                   59   ;---------------------------------------------------------------
+                                   60   ; nothing (fixed as Small model)
+                                   61   
+                                   62   ;---------------------------------------------------------------
+                                   63   ;       setting Rom Window range
+                                   64   ;---------------------------------------------------------------
+                                   65   ; nothing (fixed as range 0-0dfffh)
+                                   66   
+                                   67   ;---------------------------------------------------------------
+                                   68   ;       user SFR definition
+                                   69   ;---------------------------------------------------------------
+                                   70   ;
+                                   71   ; In C source file, define this function as follows:
+                                   72   ;
+                                   73   ; void setting_SFR(void)
+                                   74   ; {
+                                   75   ;     ...
+                                   76   ; }
+                                   77   ;---------------------------------------------------------------
+                                   78   ; extrn code : _setting_SFR
+                                   79   ;     bl      _setting_SFR
+                                   80   
+                                   81   ;---------------------------------------------------------------
+                                   82   ;       Data memory zero clear
+                                   83   ;---------------------------------------------------------------
+    = 0000E000H                    84   NEAR_RAM_START  equ     0e000h
+    = 0000EFFFH                    85   NEAR_RAM_END    equ     0efffh
+                                   86   
+00:0022 00 E0                      87           mov     er0,    #0
+00:0024 00 E2                      88           mov     er2,    #0
+00:0026 00 E4                      89           mov     er4,    #0
+00:0028 00 E6                      90           mov     er6,    #0
+                                   91   
+00:002A 00 08                      92           mov     r8,     #BYTE1 NEAR_RAM_START
+00:002C E0 09                      93           mov     r9,     #BYTE2 NEAR_RAM_START
+00:002E 8A-F0                      94           lea     [er8]
+00:0030                            95   __near_ram_loop:
+00:0030 57-90                      96           st      qr0,    [ea+]
+00:0032 88 E8                      97           add     er8,    #8              ;er8 += 8
+00:0034 F0 79                      98           cmp     r9,     #BYTE2 (NEAR_RAM_END+1)
+00:0036 FC C1                      99           blt     __near_ram_loop
+00:0038 00 78                     100           cmp     r8,     #BYTE1 (NEAR_RAM_END+1)
+00:003A FA C1                     101           blt     __near_ram_loop
+                                  102   
+                                  103   ;---------------------------------------------------------------
+                                  104   ;       WDT counter clear
+                                  105   ;
+                                  106   ;       !!NOTICE!!
+                                  107   ;       After this process, you have to clear WDT counter within 
+                                  108   ;       the time described in user's manual of LSI.
+                                  109   ;
+                                  110   ;       !!NOTICE!!
+                                  111   ;       Please remove this routine when you use DTU8 simulation 
+                                  112   ;       mode.
+                                  113   ;---------------------------------------------------------------
+                                  114   ;__wait_wdt_clear:
+                                  115   ;        tb      WDTCLR1
+                                  116   ;        bnz     __wait_wdt_clear
+                                  117   ;        mov     r0,      psw
+                                  118   ;        di
+                                  119   ;        mov     r12,     #05ah
+                                  120   ;        mov     r13,     #0a5h
+                                  121   ;        st      r12,     WDTCON
+                                  122   ;        st      r13,     WDTCON
+                                  123   ;        mov     psw,     r0
+                                  124   
+                                  125   ;---------------------------------------------------------------
+                                  126   ;       data variable initialization
+                                  127   ;---------------------------------------------------------------
+00:003C 00 0A                     128           mov     r10,    #SEG $$init_info
+00:003E 0C-F0 00-00'              129           lea     OFFSET $$init_info
+00:0042                           130   __init_loop:
+                                  131           ;---------------------------------------------
+                                  132           ; get source offset address and set in ER0
+                                  133           ;---------------------------------------------
+00:0042 AF-90 52-90               134           l       er0,    r10:[ea+]
+00:0046 FF 70                     135           cmp     r0,     #0ffh
+00:0048 02 C8                     136           bne     __skip
+00:004A FF 71                     137           cmp     r1,     #0ffh
+00:004C 20 C9                     138           beq     __init_end              ;if er0==0ffffh then exit
+00:004E                           139   __skip:
+                                  140           ;---------------------------------------------
+                                  141           ; get destination offset address and set in ER2
+                                  142           ;---------------------------------------------
+00:004E AF-90 52-92               143           l       er2,    r10:[ea+]
+                                  144   
+                                  145           ;---------------------------------------------
+                                  146           ; get size of objects and set in ER4
+                                  147           ;---------------------------------------------
+00:0052 AF-90 52-94               148           l       er4,    r10:[ea+]
+                                  149   
+                                  150           ;---------------------------------------------
+                                  151           ; get source phy_seg address and set in R6
+                                  152           ;---------------------------------------------
+00:0056 AF-90 50-96               153           l       r6,     r10:[ea+]
+                                  154   
+                                  155           ;---------------------------------------------
+                                  156           ; get destination phy_seg address and set in R7
+                                  157           ;---------------------------------------------
+00:005A AF-90 50-97               158           l       r7,     r10:[ea+]
+                                  159   
+                                  160           ;---------------------------------------------
+                                  161           ; copy
+                                  162           ;---------------------------------------------
+00:005E 80 E4                     163           add     er4,    #0
+00:0060 F0 C9                     164           bz      __init_loop             ;if er4==0000 then next
+                                  165   
+00:0062 01-A2                     166           tb      r2.0
+00:0064 0B C8                     167           bnz     __loop_by_byte
+00:0066 01-A4                     168           tb      r4.0
+00:0068 09 C8                     169           bnz     __loop_by_byte
+                                  170   
+00:006A                           171   __init_loop2:
+00:006A 6F-90 02-98               172           l       er8,    r6:[er0]
+00:006E 82 E0                     173           add     er0,    #2              ;er0 += 2
+00:0070 7F-90 23-98               174           st      er8,    r7:[er2]
+00:0074 82 E2                     175           add     er2,    #2              ;er2 += 2
+                                  176   
+00:0076 FE E4                     177           add     er4,    #-2             ;er4 -= 2
+00:0078 F8 C8                     178           bnz     __init_loop2
+00:007A E3 CE                     179           bal     __init_loop
+                                  180   
+00:007C                           181   __loop_by_byte:
+00:007C 6F-90 00-98               182           l       r8,     r6:[er0]
+00:0080 81 E0                     183           add     er0,    #1              ;er0 += 1
+00:0082 7F-90 21-98               184           st      r8,     r7:[er2]
+00:0086 81 E2                     185           add     er2,    #1              ;er2 += 1
+                                  186   
+00:0088 FF E4                     187           add     er4,    #-1             ;er4 -= 1
+00:008A F8 C8                     188           bnz     __loop_by_byte
+00:008C DA CE                     189           bal     __init_loop
+                                  190   
+00:008E                           191   __init_end:
+                                  192   
+                                  193   ;---------------------------------------------------------------
+                                  194   ;       call initializing routine
+                                  195   ;---------------------------------------------------------------
+00:008E 01-F0'00-00'              196           bl      $$content_of_init
+                                  197   
+                                  198   ;---------------------------------------------------------------
+                                  199   ;       initialize DSR zero
+                                  200   ;---------------------------------------------------------------
+00:0092 00 00                     201           mov     r0,     #0
+00:0094 11-90 00-F0               202           st      r0,     DSR
+                                  203   
+                                  204   ;---------------------------------------------------------------
+                                  205   ;       far jump to main routine
+                                  206   ;---------------------------------------------------------------
+00:0098 00-F0'00-00'              207           b       _main
+                                  208   
+                                  209   ;---------------------------------------------------------------
+                                  210   ;       segment definition for initializing routine
+                                  211   ;---------------------------------------------------------------
+                                  212   $$content_of_init segment code
+  --------------------------      213           rseg    $$content_of_init
+                                  214   
+                                  215   $$end_of_init segment code
+  --------------------------      216           rseg    $$end_of_init
+00:0000 1F-FE                     217           rt
+                                  218   
+                                  219   ;---------------------------------------------------------------
+                                  220   ;       segment definition for data variable initialization
+                                  221   ;---------------------------------------------------------------
+                                  222   $$init_info segment table 2
+  --------------------------      223           rseg    $$init_info
+00:0000 00-00'                    224           dw      $$NINITTAB
+00:0002 00-00'                    225           dw      $$NINITVAR
+00:0004 00-00'                    226           dw      size $$NINITTAB
+00:0006 00                        227           db      seg $$NINITTAB
+00:0007 00                        228           db      seg $$NINITVAR
+                                  229   
+                                  230   $$init_info_end segment table
+  --------------------------      231           rseg    $$init_info_end
+00:0000 FF-FF                     232           dw      0ffffh
+                                  233   
+                                  234   $$NINITVAR segment data 2 #0
+                                  235   $$NINITTAB segment table 2
+                                  236   
+                                  237   ;---------------------------------------------------------------
+                                  238   ;       Setting the code-option data (for ML621367)
+                                  239   ;---------------------------------------------------------------
+  --------------------------      240           cseg #0 at 0ffc0h       ; address
+00:FFC0 FF-FF                     241           dw      0ffffh          ; 0ffc0h
+00:FFC2 FF-FF                     242           dw      0ffffh          ; 0ffc2h
+00:FFC4 FF-FF                     243           dw      0ffffh          ; 0ffc4h
+00:FFC6 FF-FF                     244           dw      0ffffh          ; 0ffc6h
+00:FFC8 FF-FF                     245           dw      0ffffh          ; 0ffc8h
+00:FFCA FF-FF                     246           dw      0ffffh          ; 0ffcah
+00:FFCC FF-FF                     247           dw      0ffffh          ; 0ffcch
+00:FFCE FF-FF                     248           dw      0ffffh          ; 0ffceh
+                                  249   
+  --------------------------      250           cseg #0 at 0ffd0h       ; address
+00:FFD0 F9-FF                     251           dw      0fff9h          ; 0ffd0h    ;Disable WDT in STOP mode
+                                  252   
+  --------------------------      253           cseg #0 at 0ffd2h       ; address
+00:FFD2 F9-FF                     254           dw      0fff9h          ; 0ffd2h	;PLL=24 MHz and CPU wait mode
+00:FFD4 FF-FF                     255           dw      0ffffh          ; 0ffd4h
+00:FFD6 FF-FF                     256           dw      0ffffh          ; 0ffd6h
+00:FFD8 FF-FF                     257           dw      0ffffh          ; 0ffd8h
+00:FFDA FF-FF                     258           dw      0ffffh          ; 0ffdah
+00:FFDC FF-FF                     259           dw      0ffffh          ; 0ffdch
+00:FFDE FF-FF                     260           dw      0ffffh          ; 0ffdeh
+                                  261   
+  --------------------------      262           cseg #0 at 0ffe0h       ; address
+00:FFE0 FF-FF                     263           dw      0ffffh          ; 0ffe0h
+00:FFE2 FF-FF                     264           dw      0ffffh          ; 0ffe2h
+00:FFE4 FF-FF                     265           dw      0ffffh          ; 0ffe4h
+00:FFE6 FF-FF                     266           dw      0ffffh          ; 0ffe6h
+00:FFE8 FF-FF                     267           dw      0ffffh          ; 0ffe8h
+00:FFEA FF-FF                     268           dw      0ffffh          ; 0ffeah
+00:FFEC FF-FF                     269           dw      0ffffh          ; 0ffech
+00:FFEE FF-FF                     270           dw      0ffffh          ; 0ffeeh
+00:FFF0 FF-FF                     271           dw      0ffffh          ; 0fff0h
+00:FFF2 FF-FF                     272           dw      0ffffh          ; 0fff2h
+00:FFF4 FF-FF                     273           dw      0ffffh          ; 0fff4h
+00:FFF6 FF-FF                     274           dw      0ffffh          ; 0fff6h
+00:FFF8 FF-FF                     275           dw      0ffffh          ; 0fff8h
+00:FFFA FF-FF                     276           dw      0ffffh          ; 0fffah
+00:FFFC FF-FF                     277           dw      0ffffh          ; 0fffch
+00:FFFE FF-FF                     278           dw      0ffffh          ; 0fffeh
+                                  279   
+                                  280   ;---------------------------------------------------------------
+                                  281   ;       Keeping the Mirror area (for ML621367)
+                                  282   ;---------------------------------------------------------------
+  --------------------------      283           tseg #08h at 00000h
+08:0000                           284           ds      10000h
+                                  285   
+  --------------------------      286           tseg #09h at 00000h
+09:0000                           287           ds      00400h
+                                  288   
+                                  289   ;---------------------------------------------------------------
+                                  290   ;       Keeping the Self-Programming area (for ML621367)
+                                  291   ;---------------------------------------------------------------
+  --------------------------      292           tseg #1fh at 00000h
+1F:0000                           293           ds      00800h
+                                  294   
+                                  295   ;---------------------------------------------------------------
+                                  296   ;       Keeping the Test area over #1 (for ML621367)
+                                  297   ;---------------------------------------------------------------
+  --------------------------      298           tseg #01h at 00000h
+01:0000                           299           ds      00400h
+                                  300   
+                                  301           end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 301

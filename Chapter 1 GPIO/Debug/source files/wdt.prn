@@ -1,0 +1,170 @@
+RASU8(ML621367)Relocatable Assembler, Ver.1.80.4    assemble list. page:   1 
+ Source File: source files\wdt.asm
+ Object File: source files\wdt.obj
+ Date  : 2022/06/07 Tue.[16:21]
+ Title : 
+## Loc. Object                   Line   Source Statements
+
+                                    1   ;; Compile Options : /TML621367 /MS /near /SD /Od /W 1 /Fasource files\ /Zs 
+                                    2   ;; Version Number  : Ver.3.64.5
+                                    3   ;; File Name       : wdt.c
+                                    4   
+                                    5   	type (ML621367) 
+                                    6   	model small, near
+                                    7   	$$wdt_clear$wdt segment code 2h #0h
+                                    8   	$$wdt_init$wdt segment code 2h #0h
+                                    9   CVERSION 3.64.5
+                                   10   CGLOBAL 01H 03H 0000H "wdt_clear" 08H 02H 01H 00H 80H 00H 00H 00H 07H
+                                   11   CGLOBAL 01H 03H 0000H "wdt_init" 08H 02H 00H 00H 81H 04H 00H 00H 07H
+                                   12   CSTRUCTTAG 0000H 0000H 0000H 0008H 00000001H "_Notag"
+                                   13   CSTRUCTMEM 52H 00000001H 00000000H "b0" 02H 00H 00H
+                                   14   CSTRUCTMEM 52H 00000001H 00000001H "b1" 02H 00H 00H
+                                   15   CSTRUCTMEM 52H 00000001H 00000002H "b2" 02H 00H 00H
+                                   16   CSTRUCTMEM 52H 00000001H 00000003H "b3" 02H 00H 00H
+                                   17   CSTRUCTMEM 52H 00000001H 00000004H "b4" 02H 00H 00H
+                                   18   CSTRUCTMEM 52H 00000001H 00000005H "b5" 02H 00H 00H
+                                   19   CSTRUCTMEM 52H 00000001H 00000006H "b6" 02H 00H 00H
+                                   20   CSTRUCTMEM 52H 00000001H 00000007H "b7" 02H 00H 00H
+                                   21   CTYPEDEF 0000H 0000H 43H "_BYTE_FIELD" 04H 00H 05H 00H 00H
+                                   22   CFILE 0001H 0000117DH "D:\\U8Dev\\Inc\\ml621367.h"
+                                   23   CFILE 0002H 0000005EH "..\\source files\\wdt.h"
+                                   24   CFILE 0003H 0000004BH "..\\source files\\rdwr_reg.h"
+                                   25   CFILE 0000H 0000004FH "..\\source files\\wdt.c"
+                                   26   
+  --------------------------       27   	rseg $$wdt_init$wdt
+                                   28   CFUNCTION 0
+                                   29   
+00:0000                            30   _wdt_init	:
+                                   31   CBLOCK 0 1 46
+                                   32   
+                                   33   ;;{
+                                   34   CLINEA 0000H 0001H 002EH 0001H 0001H
+00:0000 CE-F8                      35   	push	lr
+00:0002 5E-F8                      36   	push	er8
+00:0004 05-F8                      37   	mov	er8,	er0
+                                   38   CBLOCK 0 2 46
+                                   39   CRET 0002H
+                                   40   CARGUMENT 46H 0001H 001CH "window" 02H 00H 00H
+                                   41   CARGUMENT 46H 0001H 001DH "period" 02H 00H 00H
+                                   42   
+                                   43   ;;    wdt_clear();
+                                   44   CLINEA 0000H 0001H 002FH 0005H 0010H
+00:0006 01-F0'00-00'               45   	bl	_wdt_clear
+                                   46   
+                                   47   ;;    while(wdt_getWdtClr1() == 1) {};
+                                   48   CLINEA 0000H 0001H 0030H 0005H 0024H
+00:000A                            49   _$L3 :
+                                   50   CBLOCK 0 3 48
+                                   51   CBLOCKEND 0 3 48
+00:000A 91-A0 16-F0                52   	tb	0f016h.1
+00:000E FD C8                      53   	bne	_$L3
+                                   54   
+                                   55   ;;    while(wdt_getWdtClr2() == 1) {};
+                                   56   CLINEA 0000H 0001H 0031H 0005H 0024H
+00:0010                            57   _$L7 :
+                                   58   CBLOCK 0 4 49
+                                   59   CBLOCKEND 0 4 49
+00:0010 A1-A0 16-F0                60   	tb	0f016h.2
+00:0014 FD C8                      61   	bne	_$L7
+                                   62   
+                                   63   ;;    write_reg8( WDTMOD, (( window << 4 ) | period) );
+                                   64   CLINEA 0000H 0001H 0032H 0005H 0035H
+00:0016 80-80                      65   	mov	r0,	r8
+00:0018 4A-90                      66   	sll	r0,	#04h
+00:001A 90-82                      67   	mov	r2,	r9
+00:001C 03-82                      68   	or	r2,	r0
+00:001E 11-92 12-F0                69   	st	r2,	0f012h
+                                   70   CBLOCKEND 0 2 51
+                                   71   
+                                   72   ;;}
+                                   73   CLINEA 0000H 0001H 0033H 0001H 0001H
+00:0022 1E-F8                      74   	pop	er8
+00:0024 8E-F2                      75   	pop	pc
+                                   76   CBLOCKEND 0 1 51
+                                   77   CFUNCTIONEND 0
+                                   78   
+                                   79   
+  --------------------------       80   	rseg $$wdt_clear$wdt
+                                   81   CFUNCTION 1
+                                   82   
+00:0000                            83   _wdt_clear	:
+                                   84   CBLOCK 1 1 61
+                                   85   
+                                   86   ;;{
+                                   87   CLINEA 0000H 0001H 003DH 0001H 0001H
+                                   88   CBLOCK 1 2 61
+                                   89   
+                                   90   ;;    if(wdt_getWdtClr1() == 1) {
+                                   91   CLINEA 0000H 0001H 003EH 0005H 001FH
+00:0000 91-A0 16-F0                92   	tb	0f016h.1
+00:0004 0E C8                      93   	bne	_$L9
+                                   94   CBLOCK 1 3 62
+                                   95   
+                                   96   ;;        return;
+                                   97   CLINEA 0000H 0001H 003FH 0009H 000FH
+                                   98   CBLOCKEND 1 3 64
+                                   99   
+                                  100   ;;    if(wdt_getWdtClr2() == 1) {
+                                  101   CLINEA 0000H 0001H 0042H 0005H 001FH
+00:0006 A1-A0 16-F0               102   	tb	0f016h.2
+00:000A 0B C8                     103   	bne	_$L9
+                                  104   CBLOCK 1 4 66
+                                  105   
+                                  106   ;;        return;
+                                  107   CLINEA 0000H 0001H 0043H 0009H 000FH
+                                  108   CBLOCKEND 1 4 68
+                                  109   
+                                  110   ;;	__DI();
+                                  111   CLINEA 0000H 0001H 0046H 0002H 0008H
+00:000C F7-EB                     112   	di
+                                  113   
+                                  114   ;;	do {
+                                  115   CLINEA 0000H 0001H 0047H 0002H 0005H
+00:000E                           116   _$L16 :
+                                  117   CBLOCK 1 5 71
+                                  118   
+                                  119   ;;		write_reg8( WDTCON, 0x5A );
+                                  120   CLINEA 0000H 0001H 0048H 0003H 001DH
+00:000E 5A 00                     121   	mov	r0,	#05ah
+00:0010 11-90 10-F0               122   	st	r0,	0f010h
+                                  123   CBLOCKEND 1 5 73
+                                  124   
+                                  125   ;;	} while ( get_bit( WDP ) != 1 ); 
+                                  126   CLINEA 0000H 0000H 0049H 0002H 0022H
+00:0014 81-A0 10-F0               127   	tb	0f010h.0
+00:0018 FA C9                     128   	beq	_$L16
+                                  129   
+                                  130   ;;	write_reg8( WDTCON, 0xA5 );
+                                  131   CLINEA 0000H 0001H 004AH 0002H 001CH
+00:001A A5 00                     132   	mov	r0,	#0a5h
+00:001C 11-90 10-F0               133   	st	r0,	0f010h
+                                  134   
+                                  135   ;;	__EI();
+                                  136   CLINEA 0000H 0001H 004BH 0002H 0008H
+00:0020 08-ED                     137   	ei
+                                  138   CBLOCKEND 1 2 76
+                                  139   
+                                  140   ;;}
+                                  141   CLINEA 0000H 0001H 004CH 0001H 0001H
+00:0022                           142   _$L9 :
+00:0022 1F-FE                     143   	rt
+                                  144   CBLOCKEND 1 1 76
+                                  145   CFUNCTIONEND 1
+                                  146   
+                                  147   	public _wdt_clear
+                                  148   	public _wdt_init
+                                  149   	extrn code near : _main
+                                  150   
+                                  151   	end
+
+
+
+  Target       : ML621367 (nX-U8/100)
+  Memory Model : SMALL
+  Data   Model : NEAR
+  ROM WINDOW   :    0H to DFFFH
+  Internal RAM : E000H to EFFFH
+
+  Errors   : 0
+  Warnings : 0  (/Wrpeast)
+  Lines    : 151
